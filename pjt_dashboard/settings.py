@@ -10,15 +10,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-o_@xl0=-fiu7pp1v@98r!5^kdij+vwmm73260d3=_w(q%b!e76'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
 
 with open("config_app.json", "r") as f:
     file = json.loads(f.read())
 
+
+DEBUG  = file["HOSTS"]["DEBUG"]
+DEBUG  = file["HOSTS"]["SECRET_KEY"]
 ALLOWED_HOSTS = file["HOSTS"]["ALLOWED_HOSTS"]
 CSRF_TRUSTED_ORIGINS  = file["HOSTS"]["CSRF_TRUSTED_ORIGINS"]
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None
