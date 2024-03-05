@@ -1,0 +1,960 @@
+
+
+.container-cards-resume,
+.container-cards-resume-02,
+.container-charts {
+    width: 100%;
+    display: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px;
+    border-radius: 12px;
+    gap: 10px;
+}
+.container-cards-resume,
+.container-cards-resume-02 {
+    padding: 10px;
+}
+.container-cards-resume.active,
+.container-cards-resume-02.active {
+    display: flex !important;
+}
+
+/* ---- */
+
+.container-charts {
+    height: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    /* background: #ffffff; */
+    /* border: 1px solid var(--color-white-1); */
+}
+.content-cards-resume {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    border-radius: 12px;
+    padding: 10px;
+    gap: 10px;
+}
+
+[data-container-visible] {
+    display: none;
+}
+[data-container-visible].active {
+    display: flex;
+}
+
+[data-btn-option-visual] {
+    border-radius: 4px;
+    color: #0e6cac;
+    background: white;
+    border: 1px solid #0e6cac;
+    transition: .3s ease-in-out;
+}
+[data-btn-option-visual].active {
+    border-radius: 4px;
+    color: white;
+    background: #0e6cac;
+    border: 1px solid transparent;
+}
+[data-btn-option-visual]:hover {
+    color: white;
+    background: #0e6cac;
+    border: 1px solid transparent;
+}
+
+
+
+.card-resume {
+    box-shadow: var(--box-shadow-01);
+}
+.card-resume,
+.block-details-carts-regime p {
+    width: 190px;
+    height: 78px;
+    padding: 4px;
+}
+.card-resume-balancetes {
+    width: 53.5vh;
+    padding: 10px;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.card-resume,
+.card-resume-balancetes,
+.block-details-carts-regime p {
+    border-radius: 6px;
+    /* background-color: var(--color-white-2); */
+    /* animation: animation_loading infinite 2s; */
+}
+@keyframes animation_loading {
+    10% {
+        background-color: white;
+    }
+    20% {
+        background-color: rgb(244, 241, 241);
+    }
+    30% {
+        background-color: rgb(244, 241, 241);
+    }
+    40% {
+        background-color: white;
+    }
+    50% {
+        background-color: rgb(244, 241, 241);
+    }
+    70% {
+        background-color: rgb(244, 241, 241);
+    }
+    100% {
+        background-color: white;
+    }
+}
+
+[data-card-resume="400"] {
+    background: linear-gradient(155deg, #48b7ff, #00209b);
+}
+[data-card-resume="500"] {
+    background: linear-gradient(147deg, #ffb835, #c96d05) !important;
+}
+
+
+[data-card-resume="400"] > span,
+[data-card-resume="500"] > span {
+    color: white !important;
+}
+
+[data-details-charts="info-visao-geral-regime"],
+[data-details-charts="info-visao-geral-tt-atraso"] {
+    background: linear-gradient(147deg, #ffb835, #c96d05) !important;
+}
+
+[data-details-charts="info-visao-geral-tt-sem-atraso"] {
+    background: linear-gradient(155deg, #48b7ff, #00209b);
+}
+[data-details-charts="info-visao-geral-regime"] span,
+[data-details-charts="info-visao-geral-tt-atraso"] span,
+[data-details-charts="info-visao-geral-tt-sem-atraso"] span {
+    color: white !important;
+    font-weight: 600;
+}
+
+.card-resume span:nth-child(1),
+.card-resume-balancetes span:nth-child(1){
+    margin: 10px;
+    font-size: 12px;
+    color: #8a8a8f;
+}
+
+.card-resume span:nth-child(2),
+.card-resume-balancetes span:nth-child(2){
+    display: flex;
+    width: 100%;
+    height: 65%;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #595963;
+}
+.block-details-carts-regime p span {
+    width: 100% !important;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: #595963;
+}
+
+.block-chart-pareto {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    margin: 22px 0;
+}
+
+
+.container-dashboards,
+.container-tabela-info-hist-balancetes {
+    position: relative;
+    width: 100%;
+    height: 99.5vh;
+    max-width: 100% !important;
+    overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    transition: all .3s;
+    animation: animation_show_content .8s ease-in-out;
+    background: #fbfbfb;
+    /* background: linear-gradient(153deg, rgb(234 234 253) 0%, rgba(255,255,255,1) 100%); */
+    /* border-radius: 18px; */
+}
+
+.expanded-report {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    animation: animation_expand_report .5s ease-in-out ;
+}
+@keyframes animation_expand_report {
+    from {
+        height: 100px;
+    }
+    to {
+        height: 100%;
+    }
+}
+
+
+.table-all-companies > .block-info-no-records-found,
+.table-balancetes-lancados > .block-info-no-records-found,
+.table-balancetes-mensal > .block-info-no-records-found,
+.table-all-deliveries-balancetes > .block-info-no-records-found {
+    display: none;
+    width: 77rem;
+    max-width: 100%;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    background: var(--color-white-2);
+}
+
+.container-dashboards::-webkit-scrollbar,
+.container-tabela-info-hist-balancetes::-webkit-scrollbar,
+.table-all-companies::-webkit-scrollbar,
+.table-balancetes-lancados::-webkit-scrollbar,
+.table-balancetes-mensal::-webkit-scrollbar,
+.table-all-deliveries-balancetes::-webkit-scrollbar,
+.container-datails-row-table > .block-details::-webkit-scrollbar,
+.block-charts-generic::-webkit-scrollbar {
+    background-color: transparent;
+    width: 5px;
+    height: 2.5px;
+}
+.container-dashboards::-webkit-scrollbar-thumb,
+.container-tabela-info-hist-balancetes::-webkit-scrollbar-thumb,
+.table-all-companies::-webkit-scrollbar-thumb,
+.table-balancetes-lancados::-webkit-scrollbar-thumb,
+.table-balancetes-mensal::-webkit-scrollbar-thumb,
+.table-all-deliveries-balancetes::-webkit-scrollbar-thumb,
+.container-datails-row-table > .block-details::-webkit-scrollbar-thumb,
+.block-charts-generi::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    height: 3px;
+    background-color: #0D6DAC;
+}
+
+@keyframes animation_show_content {
+    from {
+        opacity: .5;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.container-visao-geral {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    gap: 8px;
+    z-index: 1;
+    box-shadow: var(--box-shadow-02);
+    background: white;
+
+}
+.container-tabela-info,
+.container-tabela-info-hist-balancetes {
+    /* .container-tabela-info-hist-balancetes */
+    display: none;
+    padding: 15px;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+}
+
+.block-dashboard {
+    min-width: 90%;
+    max-width: 100%;
+    padding: 0;
+    padding-bottom: 3px;
+    margin: 0;
+    background-color: white;
+    transition: .5s ease-in-out;
+}
+.block-dashboard.desactive {
+    height: 0;
+    overflow: hidden;
+    animation: animation_display_option_visual .5s ease-in-out;
+    transition: .5s ease-in-out;
+}
+@keyframes animation_display_option_visual {
+    from {
+        overflow: scroll;
+        max-height: 100%;
+    }
+    to {
+        max-height: 0px;
+    }
+}
+
+
+
+/*  ------------------------- CHARTS ------------------------- */
+.block-details-carts {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.block-chart {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 290px; */
+    width: 100%;
+    height: 200px;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 9px;
+    background: white;
+}
+
+.block-details-carts p {
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 4px 7px;
+    margin: 0;
+    background: #fffef9;
+    border: 1px solid #ccc;
+}
+.block-details-carts p span {
+    font-weight: 600;
+}
+
+.info-text-destaque,
+.info-text-destaque > span {
+    color: white !important;
+    background: black !important;
+}
+.info-text-destaque i {
+    color: red;
+}
+
+
+.block-chart canvas {
+    max-width: 100%;
+}
+#myChart-entregas-regimes,
+#myChart-entregas-meses,
+#myChart-entregas-meses-02 {
+    width: 100% !important;
+    height: 203px;
+    max-width: 450px;
+    max-height: 200px;
+}
+.block-canvas-chart {
+    width: 100%;
+    max-height: 40vh;
+    max-width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.block-details-carts-regime {
+    width: 100% !important;
+    flex-direction: row !important ;
+    gap: 10px !important;
+}
+
+/* ------------------------------------- */
+
+
+
+.container-chart-resume {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 15rem;
+    border-radius: 8px;
+    background: white;
+    margin-top: 15px;
+    /* z-index: 9; */
+}
+
+
+.container-chart-resume > canvas {
+    width: 100%;
+    background: white;
+    position: relative;
+    z-index: 1;
+}
+
+.block-charts-generic {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    padding: 5px;
+    margin: 8px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    overflow: scroll;
+    background: white;
+    gap: 40px;
+}
+
+
+.block-charts-generic > .chart-generic {
+    position: relative;
+    width: 52%;
+    height: 23vh;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    /* background: #1788ff; */
+}
+.block-charts-generic > .chart-generic:nth-child(1){
+    width: 15%;
+}
+.block-charts-generic > .chart-generic.active {
+    height: 35vh;
+}
+
+.block-charts-generic > .container-cards-more-info-chart {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    background: white;
+    box-shadow: var(--box-shadow-02);
+}
+
+.block-charts-generic > .container-cards-more-info-chart h6 {
+    width: 100%;
+    padding: 6px 0;
+    text-align: center;
+    border-radius: 6px 6px 0 0;
+    background: var(--color-azul-claro-1);
+    color: white;
+}
+
+.block-charts-generic > .container-cards-more-info-chart span {
+    width: 100%;
+    padding: 6px;
+    /* background: white; */
+}
+
+.block-charts-generic > .container-cards-more-info-chart span p {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 12.5px;
+    gap: 8px;
+}
+.block-charts-generic > .container-cards-more-info-chart span p i {
+    font-size: 8px;
+    color: var(--color-azul-claro-1);
+}
+
+.block-options-report {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.block-options-report i {
+    padding: 3px;
+    border-radius: 4px;
+}
+.block-options-report i.active {
+    background: var(--color-azul-claro-1);
+    color: white;
+}
+
+
+
+
+/* ----------------------- TABLE ALL COMPANIES ----------------------- */
+.table-all-companies,
+.table-balancetes-lancados,
+.table-balancetes-mensal,
+.table-all-deliveries-balancetes {
+    width: 77rem;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    max-height: 285px;
+    overflow: scroll;
+    border-radius: 8px;
+    align-items: center;
+    /* margin: 26px 0px; */
+}
+.table-all-deliveries-balancetes {
+    width: 100rem;
+    margin-top: 0px;
+}
+.block-info-resume,
+.block-info-charts {
+    width: 100%;
+    /* height: 316px; */
+    /* min-height: 90px; */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: white;
+    border-radius: 9px;
+    flex-wrap: wrap;
+}
+.block-info-charts {
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 10px;
+}
+.block-info-resume article,
+.block-info-resume article span {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.block-info-resume article span {
+    width: 90px;
+    min-height: 100%;
+    /* background: red; */
+    padding: 10px;
+}
+.block-info-resume h5 {
+    color: var(--color-title-charts);
+}
+
+
+.table-all-companies tr,
+.table-balancetes-lancados tr,
+.table-balancetes-mensal tr,
+.table-all-deliveries-balancetes tr {
+    vertical-align: middle;
+}
+.expanded-58 {
+    max-height: 58vh;
+    animation: animation_expand_table .9s ease-in-out;
+}
+@keyframes animation_expand_table {
+    from {
+        max-height: 280px;
+    }
+    to {
+        max-height: 65vh;
+    }
+}
+.block-title-table i {
+    cursor: pointer;
+    margin: 0 8px;
+}
+.table-balancetes-lancados,
+.table-balancetes-mensal {
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    justify-content: center;
+    /* align-items: flex-start; */
+    flex-direction: row;
+    gap: 10px;
+}
+
+.table-all-companies table,
+.table-balancetes-lancados table,
+.table-balancetes-mensal table,
+.table-all-deliveries-balancetes table {
+    font-size: 11px;
+    max-width: 78rem;
+}
+.table-all-deliveries-balancetes table {
+    max-width: 100%;
+}
+
+
+.table-all-companies table thead,
+.table-balancetes-lancados table thead,
+.table-balancetes-mensal table thead,
+.table-all-deliveries-balancetes table thead {
+    position: sticky;
+    top: 0;
+}
+
+.table-all-companies table tr i,
+.table-balancetes-lancados table tr i,
+.table-balancetes-mensal table tr i,
+.table-all-deliveries-balancetes table tr i {
+    cursor: pointer;
+    font-size: 14px;
+}
+.table-balancetes-lancados article,
+.table-balancetes-mensal article {
+    position: sticky;
+    top: 0;
+}
+.block-title-table i {
+    cursor: pointer;
+}
+.block-title-table span {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.block-title-table {
+    width: 77rem;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+.sub-container-title-info,
+.block-legend-chart-alternative span {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.sub-container-title-info {
+    width: 100%;
+    height: 100%;
+}
+
+.block-legend-chart-alternative {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 40px;
+    gap: 20px;
+}
+.block-legend-chart-alternative span {
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 500;
+
+}
+.block-legend-chart-alternative span p {
+    padding: 0;
+    margin: 0;
+}
+
+.block-title-info {
+    margin: 0;
+    margin-top: 26px;
+}
+.block-tt-rows-resume {
+    padding: 0 !important;
+    margin: 0 !important;
+    gap: 0 !important;
+    font-size: 14px !important;
+    color: #85837f !important;
+}
+.block-tt-rows-resume b {
+    padding: 0 4px;
+}
+
+
+[data-tt-rows-resume="rows-all-deliveries-balancetes-average"]{
+    position: relative;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    font-size: 10px !important;
+    text-align: center;
+    top: -26px;
+}
+
+.block-option-navbar-filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.fa-file-csv {
+    color: white !important;
+    background: #0ba10b !important;
+    padding: 4px !important;
+    border-radius: 7px !important;
+    font-size: 15px !important;
+    box-shadow: var(--box-shadow-02) !important;
+    transition: .3s ease-in-out;
+}
+.fa-file-csv:hover {
+    background: #068806 !important;
+}
+
+
+
+
+
+.status-dentro-prazo,
+.status-fora-prazo,
+[data-status-entrega="status-dentro-prazo"],
+[data-status-entrega="status-fora-prazo"] {
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+
+.status-dentro-prazo,
+[data-status-entrega="status-dentro-prazo"] {
+    background-color: var(--color-azul-claro-1);
+    color: white;
+}
+.status-fora-prazo,
+[data-status-entrega="status-fora-prazo"] {
+    background-color: var(--color-laranja-1);
+    color: white;
+}
+
+[data-class-focus="no-focus-data"] {
+    padding: 5px;
+    border-radius: 5px;
+    background: #f9f8f9;
+    font-weight: 600;
+    border: 1px solid #e7e9f3;
+}
+
+
+
+
+
+
+
+/* ----------------------- container-animation-loading ----------------------- */
+
+.container-datails-row-table > .block-details {
+    width: 70vh;
+    min-height: 40vh;
+    max-width: 100%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 10px;
+    background: white;
+    overflow-y: scroll;
+}
+.block-close-container-info {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    padding: 5px 10px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    background: white;
+}
+.block-close-container-info i {
+    cursor: pointer;
+    padding: 7px 5px;
+}
+
+.block-info-company,
+.block-info-company article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px;
+    gap: 3px;
+}
+.block-info-company p {
+    margin: 0;
+    padding: 1px 4px;
+    font-weight: 500;
+}
+.block-info-company article {
+    border: 1px solid #d2d2d3;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+.block-info-company > span {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* ----------------------- container-animation-loading ----------------------- */
+.container-animation-loading,
+.container-datails-row-table {
+    display: none !important;
+    position: absolute;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: #0a0a0a82;
+    z-index: 9;
+}
+
+
+.container-animation-loading.active,
+.container-datails-row-table.active {
+    display: flex !important;
+}
+.loader {
+    margin: 0 auto;
+    width: 60px;
+    height: 50px;
+    text-align: center;
+    font-size: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    > div {
+
+        width: 8px;
+        height: 100%;
+        display: inline-block;
+        float: left;
+        margin-left: 2px;
+        -webkit-animation: delay 0.8s infinite ease-in-out;
+        animation: delay 0.8s infinite ease-in-out;
+    }
+    
+    .bar1{
+        border-radius: 5px;
+        background-color: var(--color-azul-claro-1);
+    }
+    .bar2 {
+        border-radius: 5px;
+        background-color: var(--color-laranja-1);
+        -webkit-animation-delay: -0.7s;
+        animation-delay: -0.7s;
+    }
+    .bar3 {
+        border-radius: 5px;
+        background-color: var(--color-azul-claro-1);
+        -webkit-animation-delay: -0.6s;
+        animation-delay: -0.6s;
+    }
+    .bar4 {
+        border-radius: 5px;
+        background-color: var(--color-laranja-1);
+        -webkit-animation-delay: -0.5s;
+        animation-delay: -0.5s;
+    }
+    .bar5 {
+        border-radius: 5px;
+        background-color: var(--color-azul-claro-1);
+        -webkit-animation-delay: -0.4s;
+        animation-delay: -0.4s;
+    }
+    .bar6 {
+        border-radius: 5px;
+        background-color: var(--color-laranja-1);
+        -webkit-animation-delay: -0.3s;
+        animation-delay: -0.3s;
+    }
+  }
+  
+  
+  @-webkit-keyframes delay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.05) }  
+    20% { -webkit-transform: scaleY(1.0) }
+   }
+  
+  @keyframes delay {
+    0%, 40%, 100% { 
+      transform: scaleY(0.05);
+      -webkit-transform: scaleY(0.05);
+    }  20% { 
+      transform: scaleY(1.0);
+      -webkit-transform: scaleY(1.0);
+    }
+  }
+
+
+[data-obrigacao="status-BL"],
+[data-obrigacao="status-BM"] {
+    padding: 5px;
+    border-radius: 5px;
+    color: #232121;
+}
+[data-obrigacao="status-BL"] {
+    background: #f7e9d8;
+}
+[data-obrigacao="status-BM"] {
+    background: #e0ecff;
+}

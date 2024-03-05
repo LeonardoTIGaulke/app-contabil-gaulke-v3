@@ -1,0 +1,1548 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Dashboards {% endblock %}
+{% block content %}
+
+
+
+<div class="container-datails-row-table"> <!-- onclick="closeMoreDetails();" -->
+
+    <div class="block-details">
+        <span class="block-close-container-info">
+            <i class="fa-solid fa-xmark" onclick="closeMoreDetails();"></i>
+        </span>
+
+        <span class="block-info-company">
+            <!-- <p>Detalhes do registro</p> -->
+            
+            <p>Informações da empresa</p>
+            <article>
+                <span>
+                    <span>ID Acessórias:</span>
+                    <span data-info-datail="id_acessorias">-</span>
+                </span>
+                <span>
+                    <span>CNPJ:</span>
+                    <span data-info-datail="cnpj">-</span>
+                </span>
+                <span>
+                    <span>Razão social:</span>
+                    <span data-info-datail="razao_social">-</span>
+                </span>
+                <span>
+                    <span>Regime:</span>
+                    <span data-info-datail="regime">-</span>
+                </span>
+                <span>
+                    <span>Fiscal:</span>
+                    <span data-info-datail="fiscal">-</span>
+                </span>
+                <span>
+                    <span>Contábil:</span>
+                    <span data-info-datail="contabil">-</span>
+                </span>
+            </article>
+
+            <p>Balancete lançado</p>
+            <article>
+                <span>
+                    <span>Meses em atraso:</span>
+                    <span data-info-datail="lancado_meses_atraso">-</span>
+                </span>
+                <span>
+                    <span>Data da entrega:</span>
+                    <span data-info-datail="lancado_dt_entrega">-</span>
+                </span>
+                <span>
+                    <span>Status:</span>
+                    <span data-info-datail="lancado_status_entrega" data-status-entrega="">-</span>
+                </span>
+                <span>
+                    <span>Competência:</span>
+                    <span data-info-datail="lancado_comp">-</span>
+                </span>
+            </article>
+
+            <p>Balancete mensal</p>
+            <article>
+                <span>
+                    <span>Meses em atraso:</span>
+                    <span data-info-datail="mensal_meses_atraso">-</span>
+                </span>
+                <span>
+                    <span>Data da entrega:</span>
+                    <span data-info-datail="mensal_dt_entrega">-</span>
+                </span>
+                <span>
+                    <span>Status:</span>
+                    <span data-info-datail="meses_status_entrega" data-status-entrega="">-</span>
+                </span>
+                <span>
+                    <span>Competência:</span>
+                    <span data-info-datail="mensal_comp">-</span>
+                </span>
+            </article>
+
+            <p>Resumo do período</p>
+            <article>
+                <span>
+                    <span>Meses em atraso:</span>
+                    <span data-info-datail="periodo_meses_atraso">-</span>
+                </span>
+                <span>
+                    <span>Data da entrega:</span>
+                    <span data-info-datail="periodo_DT">-</span>
+                </span>
+                <span>
+                    <span>Status:</span>
+                    <span data-info-datail="periodo_status" data-status-entrega="">-</span>
+                </span>
+                <span>
+                    <span>Competência:</span>
+                    <span data-info-datail="periodo_comp">-</span>
+                </span>
+            </article>
+
+        </span>
+
+    </div>
+</div>
+
+
+<!-- <div class="container-datails-row-table">
+
+    <div class="block-details">
+        <h3>Informações</h3>
+        <span class="block-close-container-info">
+            <i class="fa-solid fa-xmark" onclick="closeMoreDetails();"></i>
+        </span>
+
+        <span>
+            <p>Informações do cálculo... </p>
+        </span>
+
+    </div>
+</div> -->
+
+
+<div class="container container-dashboards">
+
+    <div class="container-visao-geral">
+
+        <main class="container block-dashboard">
+
+            <div class="container-filters-horizontal">
+
+                <div class="container-filters-superior">
+    
+                    <article>
+                        <span>
+                            <input type="search" data-input-search="all-companies" placeholder="digite para perquisar uma empresa" onclick="showElementBoxDropdown(this);" oninput="filter_element_dropdown_all_companies(this);">
+                        </span>
+                        
+                        <div class="block-dropdown-values block-all-companies">
+                            <span class="block-option-dropdown">
+                                <div class="container-selec-all-companies-principal-filter">
+                                    <input type="checkbox" name="selec-all-companies-principal-filter" id="selec-all-companies-principal-filter" onclick="selectAllCompaniesPrincipalFilters(this);">
+                                    <label for="">selecionar tudo</label>
+                                </div>
+                                <i class="fa-regular fa-circle-xmark" data-hide-element="block-all-companies" onclick="hideBox(this)"></i>
+                            </span>                    
+                        </div>
+        
+                    </article>
+                
+                </div>
+    
+                <!-- ------------------------------------------ -->
+    
+                <div class="container-filters-superior">
+    
+                    <article>
+                        <span>
+                            <input type="search" data-input-search="all-colab" placeholder="digite para perquisar um colaborador" onclick="showElementBoxDropdown(this);" oninput="filter_element_dropdown_all_colab(this);">
+                        </span>
+                        
+                        <div class="block-dropdown-values block-all-colab">
+                            <span class="block-option-dropdown">
+                                <div class="container-selec-all-colab-principal-filter">    
+                                    <input type="checkbox" name="selec-all-colab-principal-filter" id="selec-all-colab-principal-filter" onclick="selectAllColabPrincipalFilters(this);">
+                                    <label for="">selecionar tudo</label>
+                                </div>
+                                <i class="fa-regular fa-circle-xmark" data-hide-element="block-all-colab" onclick="hideBox(this)"></i>
+                            </span>
+    
+                        </div>
+        
+                    </article>
+                
+                </div>
+
+            </div>
+
+            <article class="container-filter-date-range">
+
+                <span>
+                    <label for="date-init">Início Entrega</label>
+                    <input type="date" id="date-init" name="date-init" data-range-name="date-init" pattern="\d{2}-\d{2}-\d{4}" onchange="selectDatePrincipalFilter(true);">
+                </span>
+                
+                <div class="container-line-separete">
+                    <span class="line-separete"></span>
+                </div>
+
+                <span>
+                    <label for="date-final">Fim Entrega</label>
+                    <input type="date" id="date-final" name="date-final" data-range-name="date-final" pattern="\d{2}-\d{2}-\d{4}" onchange="selectDatePrincipalFilter(true);">
+                </span>
+
+            </article>
+            
+            <article class="block-ul-filter">
+
+                <span> 
+                    <ul class="block-filter-year active">
+                        <li data-filter-Year="2022" onclick="actionFilterYear(this);">2022</li>
+                        <li data-filter-Year="2023" onclick="actionFilterYear(this);">2023</li>
+                        <li data-filter-Year="2024" onclick="actionFilterYear(this);">2024</li>
+                        <li data-filter-Year="-"    onclick="actionFilterYear(this);">sem mov.</li>
+                        <i class="fa-solid fa-filter-circle-xmark" data-filter-generic="block-filter-year" onclick="actionFilter_Select_Or_Clear(this, 'year')"></i>
+                    </ul>
+                </span>
+
+                <ul class="block-filter-month active">
+                    <li data-filter-month="Jan" onclick="actionFiltermonth(this);" >Jan</li>
+                    <li data-filter-month="Fev" onclick="actionFiltermonth(this);" >Fev</li>
+                    <li data-filter-month="Mar" onclick="actionFiltermonth(this);" >Mar</li>
+                    <li data-filter-month="Abr" onclick="actionFiltermonth(this);" >Abr</li>
+                    <li data-filter-month="Mai" onclick="actionFiltermonth(this);" >Mai</li>
+                    <li data-filter-month="Jun" onclick="actionFiltermonth(this);" >Jun</li>
+                    <li data-filter-month="Jul" onclick="actionFiltermonth(this);" >Jul</li>
+                    <li data-filter-month="Ago" onclick="actionFiltermonth(this);" >Ago</li>
+                    <li data-filter-month="Set" onclick="actionFiltermonth(this);" >Set</li>
+                    <li data-filter-month="Out" onclick="actionFiltermonth(this);" >Out</li>
+                    <li data-filter-month="Nov" onclick="actionFiltermonth(this);" >Nov</li>
+                    <li data-filter-month="Dez" onclick="actionFiltermonth(this);" >Dez</li>
+                    <li data-filter-month="-"   onclick="actionFiltermonth(this);" >sem mov.</li>
+                    <i class="fa-solid fa-filter-circle-xmark" data-filter-generic="block-filter-month" onclick="actionFilter_Select_Or_Clear(this, 'month')"></i>
+                </ul>
+                
+                <article class="block-multiple-filters">
+                    
+                    <ul class="block-filter-regime-agrup">
+                        <li data-filter-regime-agrup="Simples" onclick="actionFilterRegimeAgrup(this);" >Simples</li>
+                        <li data-filter-regime-agrup="Lucro Real" onclick="actionFilterRegimeAgrup(this);" >Lucro Real</li>
+                        <li data-filter-regime-agrup="Lucro Presumido" onclick="actionFilterRegimeAgrup(this);" >Lucro Presumido</li>
+                        <li data-filter-regime-agrup="Outros" onclick="actionFilterRegimeAgrup(this);" >Outros</li>
+                        <i class="fa-solid fa-filter-circle-xmark" data-filter-generic="block-filter-regime-agrup" onclick="actionFilter_Select_Or_Clear(this, 'regime_agrup')"></i>
+                    </ul>
+                    <ul class="block-filter-company-type">
+                        <li data-filter-type-company="Normal" onclick="actionFilterCompanyType(this);" >Normal</li>
+                        <li data-filter-type-company="MEI" onclick="actionFilterCompanyType(this);" >MEI</li>
+                        <i class="fa-solid fa-filter-circle-xmark" data-filter-generic="block-filter-company-type" onclick="actionFilter_Select_Or_Clear(this, 'type_company')"></i>
+                    </ul>
+
+                </article>
+
+            </article>            
+            
+        </main>
+        
+        
+        
+        <span class="container-visual-position-filters">
+            <span class="container-visual-options">
+                <span>
+                    <input type="button" value="visão geral" data-btn-option-visual="container-charts" onclick="selectVisualDashboard(this, false);">
+                    <input type="button" value="atividades" data-btn-option-visual="container-tabela-info" onclick="selectVisualDashboard(this, false);">
+                    <input type="button" value="histórico de balancetes" data-btn-option-visual="container-tabela-info-hist-balancetes" onclick="selectVisualDashboard(this, false);">
+                    <!-- ---- -->
+                    <input type="button" class="btn-inactive" value="análise por colaborador" data-btn-option-visual="container-analise-por-colaborador" onclick="selectVisualDashboard(this, false);">
+                    <input type="button" class="btn-inactive" value="análise por clientes" data-btn-option-visual="container-analise-por-clientes" onclick="selectVisualDashboard(this, false);">
+                    <input type="button" class="btn-inactive" value="análise por setor" data-btn-option-visual="container-analise-por-setor" onclick="selectVisualDashboard(this, false);">
+                    <input type="button" class="btn-inactive" value="projeção" data-btn-option-visual="container-projecao" onclick="selectVisualDashboard(this, false);">
+                </span>
+            </span>
+            <span class="block-option-navbar-filters">
+                <i class="fa-solid fa-file-csv" onclick="downloadNewFileAllCompanies();"></i>
+                <i class="fa-solid fa-chevron-up" onclick="displayFiltersPrincipal(this);"></i>
+            </span>
+        </span>
+    </div>
+
+
+    <div class="container-cards-resume active">
+        <div class="content-cards-resume">
+
+            <div class="card-resume" data-card-resume="info">
+                <span>Compet. atual</span>
+                <span></span>
+            </div>
+    
+            <div class="card-resume" data-card-resume="1">
+                <span>Qtd. de clientes</span>
+                <span></span>
+            </div>
+    
+            <div class="card-resume" data-card-resume="2">
+                <span>Qtd. de clientes (<i><small>Normais</small></i>)</span>
+                <span></span>
+            </div>
+    
+            <div class="card-resume" data-card-resume="3">
+                <span>Qtd. de clientes (<i><small>MEIs</small></i>)</span>
+                <span></span>
+            </div>
+                    
+            <div class="card-resume" data-details-charts="info-visao-geral-regime">
+                <span>Acumulado atraso (meses)</span>
+                <span></span>
+            </div>
+    
+            <div class="card-resume" data-details-charts="info-visao-geral-tt-atraso">
+                <span>Qte. atraso</span>
+                <span></span>
+            </div>
+
+            <div class="card-resume" data-details-charts="info-visao-geral-tt-sem-atraso">
+                <span>Qte. sem atraso</span>
+                <span></span>
+            </div>
+
+            <div class="card-resume" data-details-charts="info-visao-geral-indice-eficiencia-operacional">
+                <span>Ind. Eficiência Operacional</span>
+                <span></span>
+            </div>
+
+        </div>
+    
+
+    </div>
+
+    <div class="container-cards-resume-02">
+        <div class="content-cards-resume">
+            
+            <div class="card-resume" data-card-resume="100">
+                <span>Qtd. de clientes</span>
+                <span></span>
+            </div>
+    
+            <div class="card-resume" data-card-resume="200">
+                <span>Qtd. de clientes (<i><small>Normais</small></i>)</span>
+                <span></span>
+            </div>
+    
+            <div class="card-resume" data-card-resume="300">
+                <span>Qtd. de clientes (<i><small>MEIs</small></i>)</span>
+                <span></span>
+            </div>
+                    
+            <div class="card-resume"  data-card-resume="400">
+                <span>Intervalo de compt. (meses)</span>
+                <span></span>
+                <span class="block-tt-rows-resume" data-tt-rows-resume="rows-all-deliveries-balancetes-average">média<b>0</b> </span>
+            </div>
+    
+            <div class="card-resume"  data-card-resume="500">
+                <span>Intervalo de entrega (meses)</span>
+                <span></span>
+            </div>
+
+        </div>
+    
+
+    </div>
+
+
+
+    <div class="container-charts active" data-container-visible="container-charts">
+        
+        <div class="block-info-charts">
+            <div class="card-resume-balancetes" data-card-resume="info-visao-geral-balancetes">
+                <span>Balancete</span>
+                <span class="block-details-carts" data-details-charts="info-visao-geral-balancetes">
+                    <p>TT. Dentro Prazo: <span>0</span></p>
+                    <p>TT. Fora Prazo: <span>0</span></p>
+                    <p class="info-text-destaque">
+                        Perf. (%):
+                        <span>0%</span>
+                        <!-- <i class="fa-solid fa-caret-up"></i> -->
+                        <i class="fa-solid fa-caret-down"></i>
+                    </p>
+                </span>
+                <div class="block-chart" style="position: relative; height: 100%; width: 100%;">
+                    <canvas id="myChart0" style="width: 240px;"></canvas>
+                </div>
+            </div>
+    
+            <div class="card-resume-balancetes" data-card-resume="info-mensal">
+                <span>Balancete Mensal</span>
+                <span class="block-details-carts" data-details-charts="info-mensal">
+                    <p>TT. Dentro Prazo: <span>0</span></p>
+                    <p>TT. Fora Prazo: <span>0</span></p>
+                    <p class="info-text-destaque">
+                        Perf. (%):
+                        <span>0%</span>
+                        <!-- <i class="fa-solid fa-caret-up"></i> -->
+                        <i class="fa-solid fa-caret-down"></i>
+                    </p>
+                </span>
+                <div class="block-chart" style="position: relative; height: 100%; width: 100%;">
+                    <canvas id="myChart1" style="width: 240px;"></canvas>
+                </div>
+            </div>
+    
+            <div class="card-resume-balancetes" data-card-resume="info-lancado">
+                <span>Balancete Lançado</span>
+                <span class="block-details-carts" data-details-charts="info-lancado">
+                    <p>TT. Dentro Prazo: <span>0</span></p>
+                    <p>TT. Fora Prazo: <span>0</span></p>
+                    <p class="info-text-destaque">
+                        Perf. (%):
+                        <span>0%</span>
+                        <!-- <i class="fa-solid fa-caret-up"></i> -->
+                        <i class="fa-solid fa-caret-down"></i>
+                    </p>
+                </span>
+                <div class="block-chart" style="position: relative; height: 100%; width: 100%;">
+                    <canvas id="myChart2" style="width: 240px;"></canvas>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="block-chart-pareto">
+            <div class="block-chart" style="position: relative; height: 100%; width: 100%; padding: 0; margin: 0;">
+                <canvas id="myChart-700" style="width: 240px;"></canvas>
+            </div>
+        </div>
+        <div class="block-chart-pareto">
+            <div class="block-chart" style="position: relative; width: 100%; min-height: 450px; max-height: 100%; padding: 0; margin: 0;">
+                <canvas id="myChart-800" style="width: 240px;"></canvas>
+            </div>
+        </div>
+
+
+        
+    </div>
+
+    <div class="container-tabela-info" data-container-visible="container-tabela-info">
+        <div class="sub-container-title-info" style="height: 100px;">
+            <span class="block-title-table block-title-info">
+                <span>
+                    <h5>Balancetes</h5>
+                    <i class="fa-solid fa-compress" onclick="expandTableBalanceteMensal();"></i>
+                </span>
+                <span>
+                    <i class="fa-solid fa-file-csv" onclick="downloadNewFileAllCompanies_filtered();"></i>
+                    
+                    <span class="block-tt-rows-resume" data-tt-rows-resume="rows-all-companies">registros: <b>0</b> </span>
+                </span>
+                <!-- <i class="fa-solid fa-minimize" onclick="expandTableBalanceteMensal();"></i> -->
+            </span>
+        </div>
+        
+        <div class="table-all-companies">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th class="col-180">CNPJ</th>
+                        <th class="col-180">Empresa</th>
+                        <th class="col-140">Regime</th>
+             
+                        <!-- <th class="col-180">Lanç. - Meses em atraso</th>
+                        <th class="col-180">Lanç. - Comp.</th>
+                        <th class="col-180">Lanç. - DT (últ.) entrega</th>
+                        <th class="col-140">Lanç. - Status</th>
+    
+                        <th class="col-180">Mensal - Meses em atraso</th>
+                        <th class="col-180">Mensal - Comp.</th>
+                        <th class="col-180">Mensal - DT (últ.) entrega</th>
+                        <th class="col-140">Mensal - Status</th> -->
+    
+                        <th class="col-180">Atraso (meses)</th>
+                        <th class="col-140">Competência</th>
+                        <th class="col-180">Data da Entrega</th>
+                        <th class="col-140">Status</th>
+    
+                        <th class="col-140">Informações</th>
+    
+                    </tr>
+                </thead>
+    
+                <tbody></tbody>
+    
+            </table>
+
+            <article class="block-info-no-records-found">
+                <span>Nenhum registro encontrado.</span>
+            </article>
+
+
+        </div>
+        
+        <!-- <div class="block-info-resume">
+            <h5>Rank entregas em atraso - Balancete lançado</h5>
+            <article>
+                <span></span>
+                <span></span>
+                <span></span>
+    
+            </article>
+        </div> -->
+
+        <span class="block-title-info">
+            <h5 style="text-align: center;">Top 8 balancetes em atraso - Lançados</h5>
+        </span>
+
+        <div class="table-balancetes-lancados">
+            <!-- <article>
+                <span>Teste</span>
+                <span>Teste</span>
+                <span>Teste</span>
+                <span>Teste</span>
+                <div style="width: 300px; height: 300px; max-width: 100%;">
+                    <canvas id="myChart-test-pie" style="width: 300px; max-height: 285px;"></canvas>
+                </div>
+            </article> -->
+
+            
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th class="col-120">CNPJ</th>
+                        <th class="col-180">Empresa</th>
+                        <th class="col-140">Regime</th>
+             
+                        <th class="col-120">Atraso (meses)</th>
+                        <th class="col-120">Competência</th>
+                        <th class="col-120">Data da entrega</th>
+                        <th class="col-120">Status</th>
+                        
+                        <th class="col-120">Informações</th>
+                    </tr>
+                </thead>
+    
+                <tbody></tbody>
+    
+            </table>
+
+            <article class="block-info-no-records-found">
+                <span>Nenhum registro encontrado.</span>
+            </article>
+
+
+        </div>
+        
+        <span class="block-title-info">
+            <h5 style="text-align: center;">Top 8 balancetes em atraso - Mensal</h5>
+        </span>
+    
+        <div class="table-balancetes-mensal">
+            <!-- <article>
+                <span>Teste</span>
+                <span>Teste</span>
+                <span>Teste</span>
+                <span>Teste</span>
+                <div style="width: 300px; height: 300px; max-width: 100%;">
+                    <canvas id="myChart-test-pie" style="width: 300px; max-height: 285px;"></canvas>
+                </div>
+            </article> -->
+
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th class="col-120">CNPJ</th>
+                        <th class="col-180">Empresa</th>
+                        <th class="col-140">Regime</th>
+             
+                        <th class="col-120">Atraso (meses)</th>
+                        <th class="col-120">Competência</th>
+                        <th class="col-120">Data da entrega</th>
+                        <th class="col-120">Status</th>
+                        
+                        <th class="col-120">Informações</th>
+                    </tr>
+                </thead>
+                
+                <tbody></tbody>
+                
+            </table>
+
+            <article class="block-info-no-records-found">
+                <span>Nenhum registro encontrado.</span>
+            </article>
+
+        </div>
+    
+    </div>
+
+    
+    <!-- -------------------------- -->
+    <div class="container-tabela-info-hist-balancetes" data-container-visible="container-tabela-info-hist-balancetes">
+
+        <div class="sub-container-title-info" style="height: 100px;">
+            <span class="block-title-table block-title-info" style="width: 100%;">
+                <span>
+
+                    <h5>Balancetes entregues</h5>
+
+                    <div class="block-options-report">
+                        <i class="fa-solid fa-angle-up" data-container-report="container-tabela-info-hist-balancetes" onclick="expandReport(this)"></i>
+                        <i class="fa-solid fa-shapes active" data-type-report="all" onclick="selectReport(this);"></i>
+                        <i class="fa-solid fa-table-list" data-type-report="table" onclick="selectReport(this);"></i>
+                        <i class="fa-solid fa-chart-column" data-type-report="chart" onclick="selectReport(this);"></i>
+                    </div>
+
+                </span>
+
+                <span>
+
+                    <i class="fa-solid fa-file-csv" onclick="downloadNewFileAllBalancetes_filtered();"></i>
+                    <span class="block-tt-rows-resume" data-tt-rows-resume="rows-all-deliveries-balancetes">registros: <b>0</b> </span>
+                    
+                </span>
+                <!-- <i class="fa-solid fa-minimize" onclick="expandTableBalanceteMensal();"></i> -->
+            </span>
+        </div>
+
+        
+        <div class="container-chart-resume">
+
+            <div class="sub-container-title-info" style="height: 100px;">
+                <div class="block-legend-chart-alternative">
+                    <span>
+                        <i class="fa-solid fa-circle" style="color: var(--color-azul-claro-1);"></i>
+                        <p>Intervalo de compt. </p>
+                    </span>
+                    <span>
+                        <i class="fa-solid fa-circle" style="color: var(--color-laranja-1);"></i>
+                        <p>Intervalo de entrega</p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="sub-container-title-info">
+                <div class="block-charts-generic">
+    
+                    <span class="chart-generic">
+                        <canvas id="myChart-600"></canvas>
+                    </span>
+    
+                    <span class="chart-generic">
+                        <canvas id="myChart-500" style="width: 100vh !important; height: 11rem !important;"></canvas>
+                    </span>
+
+                    <div class="container-cards-more-info-chart">
+                        <h6>Informações</h6>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>    
+                    
+                </div>
+            </div>
+
+        </div>
+        <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+        <div class="table-all-deliveries-balancetes">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+    
+                        <th>ID</th>
+                        <th class="col-140">CNPJ</th>
+                        <th class="col-180">Empresa</th>
+                        <th class="col-180">Regime</th>
+                        
+                        <!-- <th class="col-140">Fiscal</th> -->
+                        <th class="col-140">Contábil</th>
+                        <th class="col-120">Competência</th>
+                        <th class="col-140">Data da Entrega</th>
+                        <th class="col-180">Obrigação</th>
+    
+                        <th class="col-140">Intervalo de compt. (meses)</th>
+                        <th class="col-140">Intervalo de entrega (meses)</th>
+                        
+                        <th class="col-140">Status</th>
+                        <th class="col-120">Informações</th>
+    
+                    </tr>
+                </thead>
+    
+                <tbody></tbody>
+    
+            </table>
+    
+            <article class="block-info-no-records-found">
+                <span>Nenhum registro encontrado.</span>
+            </article>
+    
+    
+        </div>
+        <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+    </div>
+
+
+
+
+
+    
+    <div class="container-analise-por-colaborador" data-container-visible="container-analise-por-colaborador">
+        <p>container-analise-por-colaborador</p>
+    </div>
+    <div class="container-analise-por-clientes" data-container-visible="container-analise-por-clientes">
+        <p>container-analise-por-clientes</p>
+    </div>
+    <div class="container-analise-por-setor" data-container-visible="container-analise-por-setor">
+        <p>container-analise-por-setor</p>
+    </div>
+    <div class="container-projecao" data-container-visible="container-projecao">
+        <p>container-projecao</p>
+    </div>
+    
+    
+</div>
+
+
+
+<!-- <script src="{% static 'controller_rules_companies.js' %}"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.2.0/chartjs-plugin-datalabels.min.js"></script>
+<script src="{% static 'update_info.js' %}"></script>
+<script src="{% static 'charts.js' %}"></script>
+<script src="{% static 'downloads.js' %}"></script>
+
+<script>
+    
+    window.onload = function (){
+
+        
+        // try {
+        //     option_active = JSON.parse( window.localStorage.getItem("data_btn_option_visual") );
+        //     document.querySelector(`[data-btn-option-visual="${option_active}"]`).classList.add("active")
+        // }
+        // catch (error) {
+        //     JSON.stringify( window.localStorage.setItem("data_btn_option_visual", "container-charts") );
+        // };
+
+        try {
+            JSON.parse( window.localStorage.getItem("filter_month") )["filter"];
+        }
+        catch (error) {
+            window.localStorage.setItem(
+                "filter_month",
+                JSON.stringify(
+                    {
+                        "filter": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez", "-"],
+                    }
+                )
+            );
+        };
+        // ----
+        try {
+            JSON.parse( window.localStorage.getItem("filter_year") )["filter"];
+        }
+        catch (error) {
+            window.localStorage.setItem(
+                "filter_year",
+                JSON.stringify(
+                    {
+                        "filter": ["2022", "2023", "2024", "-"],
+                    }
+                )
+            );
+        };
+        // ----
+        try {
+            JSON.parse( window.localStorage.getItem("filter_regime_agrup") )["filter"];
+        }
+        catch (error) {
+            window.localStorage.setItem(
+                "filter_regime_agrup",
+                JSON.stringify(
+                    {
+                        "filter": ["Simples", "Lucro Real", "Lucro Presumido", "Outros"],
+                    }
+                )
+            );
+        };
+        // ----
+        try {
+            JSON.parse( window.localStorage.getItem("filter_type_company") )["filter"];
+        }
+        catch (error) {
+            window.localStorage.setItem(
+                "filter_type_company",
+                JSON.stringify(
+                    {
+                        "filter": ["Normal", "MEI"],
+                    }
+                )
+            );
+        };
+        
+        update_status_btn_filter_month();
+        update_status_btn_filter_year();
+        update_status_btn_filter_regime_agrup();
+        update_status_btn_filter_type_company();
+        
+        document.querySelector(".container-animation-loading").classList.toggle("active");
+        let url = "{% url 'get_all_companies' %}";
+        let csrf_token = "{{csrf_token}}";
+        let body = {};
+        let headers = {
+            "X-CSRFToken": csrf_token,
+        };
+
+        fetch(url, {
+
+            method: "GET",
+            headers: headers
+
+        }).then((data)=>{
+
+            selectVisual_Generic();
+
+            return data.json();
+        }).then((data)=>{
+
+            console.log(data)
+            
+            
+            data_all_companies_global = data["data"]["data_all_companies"]["obj_all_companies"];
+            balancete_mensal = data["data"]["data_all_companies"]["obj_balancete_mensal"];
+            balancete_lancado = data["data"]["data_all_companies"]["obj_balancete_lancado"];
+            data_all_deliveries_balancetes = data["data"]["data_all_companies"]["obj_all_deliveries_balancetes"];
+            
+            document.querySelector(`[data-card-resume="info"]`).querySelectorAll("span")[1].innerText = data["data"]["data_all_companies"]["competencia_atual"];
+
+            putCompany(data_all_companies_global, "companies");
+            putCompany(balancete_mensal, "balancete_mensal");
+            putCompany(balancete_lancado, "balancete_lancado");
+            putCompany(data_all_deliveries_balancetes, "all_deliveries_balancetes");
+
+            update_status_btn_filter_id_company_by_name();
+            
+            const updateFiltersPromisse = new Promise((resolve, reject) => {
+                update_filter_company_names(true);
+                resolve(true);
+            
+            }).then((data)=>{
+                updateFilterCompaniesPrincipal();
+                
+                // ------------------------------------------------
+                // atualiza a lista dropdown de colaboradores.
+                const updateData = new Promise((resolve, reject)=>{
+                    updateFilterColabPrincipal();
+                    resolve(true);
+                }).then((_)=>{
+                    setTimeout(()=>{
+
+                        return document.querySelector(".container-animation-loading").classList.toggle("active");
+                    }, 3500);
+
+                });
+            });
+        });
+        
+        
+    }
+    
+</script>
+
+
+<script>
+
+    function selectReport(element){
+        let type_report = element.getAttribute("data-type-report");
+
+        document.querySelectorAll(`[data-type-report]`).forEach((btn)=>{
+            if(btn.getAttribute("data-type-report") === type_report){
+                btn.classList.add("active");
+            } else {
+                btn.classList.remove("active");
+            }
+        })
+
+
+        if ( type_report == "chart" ){
+            document.querySelector(".container-chart-resume").style.display = "flex";
+            document.querySelector(".table-all-deliveries-balancetes").style.display = "none";
+            // ----
+            document.querySelector(".container-chart-resume").style.height = "100%";
+        }
+        else if ( type_report == "table" ) {
+            document.querySelector(".container-chart-resume").style.display = "none";
+            document.querySelector(".table-all-deliveries-balancetes").style.display = "flex";
+            
+            document.querySelector(".container-chart-resume").style.height = "15rem";
+            document.querySelector(".table-all-deliveries-balancetes").style.maxHeight = "100%";
+        }
+
+        if (type_report == "all") {
+            document.querySelector(".container-chart-resume").style.display = "flex";
+            document.querySelector(".table-all-deliveries-balancetes").style.display = "flex";
+
+            document.querySelectorAll(".chart-generic").forEach((element)=>{
+                element.classList.remove("active");
+            });
+            
+        } else {
+            document.querySelectorAll(".chart-generic").forEach((element)=>{
+                element.classList.add("active");
+            });
+        }
+
+
+
+
+    }
+
+    function actionFiltermonth(element){
+
+        // document.querySelector(".container-animation-loading").classList.toggle("active");
+
+        element.classList.toggle("active");
+
+        let month, filter, btn_action_filter;
+        month = element.getAttribute("data-filter-month");
+        filter = JSON.parse( window.localStorage.getItem("filter_month") )["filter"];
+        btn_action_filter = document.querySelector(`[data-filter-generic="block-filter-month"]`);
+
+        if (!filter.includes(month)){
+            filter.push(month);
+        } else {
+            let indmonth = filter.indexOf(month);
+            if (indmonth !== -1){
+                filter.splice(indmonth, 1);
+                console.log("mês removido...")
+            }
+        }
+        
+        if (filter.length >= 1){
+            btn_action_filter.classList.add("active");
+        } else {
+            btn_action_filter.classList.remove("active");
+        }
+
+        window.localStorage.setItem("filter_month", JSON.stringify({"filter": filter}));
+
+        new Promise((resolve, reject)=>{
+            update_filter_company_names(true);
+            return resolve(true);
+        }).then((_) => {
+            // document.querySelector(".container-animation-loading").classList.toggle("active");
+        });
+    }
+
+    function actionFilterYear(element){
+
+        element.classList.toggle("active");
+
+        let year, filter, indyear, btn_action_filter;
+
+
+        year = String( element.getAttribute("data-filter-Year") );
+        btn_action_filter = document.querySelector(`[data-filter-generic="block-filter-year"]`);
+
+        filter = JSON.parse( window.localStorage.getItem("filter_year") )["filter"];
+        
+        if (!filter.includes(year)){
+            filter.push(year);
+        } else {
+            indyear = filter.indexOf(year);
+            if (indyear !== -1){
+                filter.splice(indyear, 1);
+                console.log("ano removido...")
+            }
+        }
+
+        if (filter.length >= 1){
+            btn_action_filter.classList.add("active");
+        } else {
+            btn_action_filter.classList.remove("active");
+        }
+
+        window.localStorage.setItem("filter_year", JSON.stringify({"filter": filter}));
+
+
+        new Promise((resolve, reject)=>{
+            update_filter_company_names(true);
+            return resolve(true);
+        }).then((_) => {
+            // document.querySelector(".container-animation-loading").classList.toggle("active");
+        });
+        
+        
+    }
+    
+    function actionFilterRegimeAgrup(element){
+
+        element.classList.toggle("active");
+
+        let year, filter;
+
+        year = String( element.getAttribute("data-filter-regime-agrup") );
+
+        filter = JSON.parse( window.localStorage.getItem("filter_regime_agrup") )["filter"];
+        btn_action_filter = document.querySelector(`[data-filter-generic="block-filter-regime-agrup"]`);
+        
+        if (!filter.includes(year)){
+            filter.push(year);
+        } else {
+            let indyear = filter.indexOf(year);
+            if (indyear !== -1){
+                filter.splice(indyear, 1);
+                console.log("mês removido...")
+            }
+        }
+        
+        if (filter.length >= 1){
+            btn_action_filter.classList.add("active");
+        } else {
+            btn_action_filter.classList.remove("active");
+        }
+
+        window.localStorage.setItem("filter_regime_agrup", JSON.stringify({"filter": filter}));
+
+        new Promise((resolve, reject)=>{
+            update_filter_company_names(true);
+            return resolve(true);
+        }).then((_) => {
+            // document.querySelector(".container-animation-loading").classList.toggle("active");
+        });
+        
+    }
+
+    function actionFilterCompanyName(element){
+
+        element.classList.toggle("active");
+
+        let CompanyName, filter;
+
+        CompanyName = String( element.getAttribute("data-checkbox-company") );
+
+        filter = JSON.parse( window.localStorage.getItem("filter_company_name") )["filter"];
+        btn_action_filter = document.querySelector(`[data-filter-generic="block-filter-company-type"]`);
+
+        if (!filter.includes(CompanyName)){
+            filter.push(CompanyName);
+        } else {
+            let indCompanyName = filter.indexOf(CompanyName);
+            if (indCompanyName !== -1){
+                filter.splice(indCompanyName, 1);
+                console.log("compay removida...")
+            }
+        }
+
+        if (filter.length >= 1){
+            btn_action_filter.classList.add("active");
+        } else {
+            btn_action_filter.classList.remove("active");
+        }
+
+        window.localStorage.setItem("filter_company_name", JSON.stringify({"filter": filter}));
+
+        new Promise((resolve, reject)=>{
+            update_filter_company_names(true);
+            return resolve(true);
+        }).then((_) => {
+            // document.querySelector(".container-animation-loading").classList.toggle("active");
+        });
+    }
+    
+    function actionFilterColabName(element){
+
+        element.classList.toggle("active");
+
+        let ColabName;
+        let filter = new Array();
+
+        document.querySelectorAll("[data-checkbox-colab]").forEach((data)=>{
+            if (data.checked){
+                filter.push(data.getAttribute("data-checkbox-colab"));
+            }
+        });
+
+        ColabName = String( element.getAttribute("data-checkbox-colab") );
+
+     
+        window.localStorage.setItem("filter_colaborador", JSON.stringify({"filter": filter}));
+
+        new Promise((resolve, reject)=>{
+            update_filter_company_names(true);
+            return resolve(true);
+        }).then((_) => {
+            // document.querySelector(".container-animation-loading").classList.toggle("active");
+        });
+    }
+
+    function actionFilterCompanyType(element){
+
+        element.classList.toggle("active");
+
+        let typeCompany, filter;
+
+        typeCompany = String( element.getAttribute("data-filter-type-company") );
+
+        filter = JSON.parse( window.localStorage.getItem("filter_type_company") )["filter"];
+
+        if (!filter.includes(typeCompany)){
+            filter.push(typeCompany);
+        } else {
+            let indTypeCompany = filter.indexOf(typeCompany);
+            if (indTypeCompany !== -1){
+                filter.splice(indTypeCompany, 1);
+                console.log("compay removida...")
+            }
+        }
+        console.log(typeCompany)
+        console.log(filter)
+
+        filter = window.localStorage.setItem("filter_type_company", JSON.stringify({"filter": filter}));
+
+        new Promise((resolve, reject)=>{
+            update_filter_company_names(true);
+            return resolve(true);
+        }).then((_) => {
+            // document.querySelector(".container-animation-loading").classList.toggle("active");
+        });
+        
+        
+    }
+
+
+
+    function selectAllCompaniesPrincipalFilters(element){
+        let rows_companies, status_btn, checkbox, id_acessorias_aux;
+        rows_companies = document.querySelector(".block-all-companies").querySelectorAll("span");
+        
+        if (element.checked){
+            status_btn = true;
+        } else {
+            status_btn = false;
+            window.localStorage.setItem( "filter_company_name" , JSON.stringify({"filter": []}) );
+            filter_company_name = JSON.parse( window.localStorage.getItem("filter_company_name") )["filter"];
+        }
+
+        for (let i = 0; i < rows_companies.length; i++){
+
+            if ( i >= 1 ) {
+                checkbox = rows_companies[i].querySelector("input");
+                id_acessorias_aux = checkbox.getAttribute("data-checkbox-company");
+                checkbox.checked = status_btn;
+
+                if (status_btn && !filter_company_name.includes(String(id_acessorias_aux))){
+                    filter_company_name.push(String(id_acessorias_aux));
+                }
+                
+            }
+        }
+        window.localStorage.setItem( "filter_company_name" , JSON.stringify({"filter": filter_company_name}) );
+
+        new Promise((resolve, reject)=>{
+            update_filter_company_names(true);
+            return resolve(true);
+        }).then((_) => {
+            // document.querySelector(".container-animation-loading").classList.toggle("active");
+        });
+    }
+    function selectAllColabPrincipalFilters(element){
+        let rows_companies, status_btn, checkbox, id_acessorias_aux;
+        rows_companies = document.querySelector(".block-all-colab").querySelectorAll("span");
+        
+        if (element.checked){
+            status_btn = true;
+        } else {
+            status_btn = false;
+            window.localStorage.setItem( "filter_colaborador" , JSON.stringify({"filter": []}) );
+            filter_colaborador = JSON.parse( window.localStorage.getItem("filter_colaborador") )["filter"];
+        }
+
+        for (let i = 0; i < rows_companies.length; i++){
+
+            if ( i >= 1 ) {
+                checkbox = rows_companies[i].querySelector("input");
+                id_acessorias_aux = checkbox.getAttribute("data-checkbox-colab");
+                checkbox.checked = status_btn;
+
+                if (status_btn && !filter_colaborador.includes(String(id_acessorias_aux))){
+                    filter_colaborador.push(String(id_acessorias_aux));
+                }
+                
+            }
+        }
+
+        window.localStorage.setItem( "filter_colaborador" , JSON.stringify({"filter": filter_colaborador}) );
+
+        new Promise((resolve, reject)=>{
+            update_filter_company_names(true);
+            return resolve(true);
+        }).then((_) => {
+            // document.querySelector(".container-animation-loading").classList.toggle("active");
+        });
+    }
+
+</script>
+
+
+<script>
+
+    function displayFiltersPrincipal(element){
+        element.classList.toggle("icon-active-visual");
+        document.querySelector(".block-dashboard").classList.toggle("desactive");
+
+        hideBox(document.querySelector('[data-hide-element="block-all-companies"]') );
+        hideBox(document.querySelector('[data-hide-element="block-all-colab"]') );
+    }
+
+    function selectVisualDashboard(element, update_data){
+        
+        // container-tabela-info-hist-balancetes
+        // data-btn-option-visual
+
+        
+        
+        console.log(` ------------ element ------------ `)
+        console.log(element)
+
+        var option_active, all_btns, containers;
+
+        option_active = element.getAttribute("data-btn-option-visual");
+        window.localStorage.setItem("data_btn_option_visual", option_active);
+
+        if (option_active != "container-tabela-info-hist-balancetes") {
+
+            document.querySelector(".block-filter-year").classList.add("active");
+            document.querySelector(".block-filter-month").classList.add("active");
+            document.querySelector(".container-filter-date-range").classList.remove("active");
+
+        } else {
+
+            document.querySelector(".block-filter-year").classList.remove("active");
+            document.querySelector(".block-filter-month").classList.remove("active");
+            document.querySelector(".container-filter-date-range").classList.add("active");
+            
+        }
+
+        if (option_active == "container-tabela-info-hist-balancetes") {
+
+            document.querySelector(".container-cards-resume").classList.remove("active");
+            document.querySelector(".container-cards-resume-02").classList.add("active");
+        }
+        else {
+            
+            document.querySelector(".container-cards-resume").classList.add("active");
+            document.querySelector(".container-cards-resume-02").classList.remove("active");
+        }
+        
+        // ----
+        all_btns = document.querySelectorAll("[data-btn-option-visual]");
+        containers = document.querySelectorAll("[data-container-visible]");
+
+        all_btns.forEach((btn)=>{
+
+            if( btn.getAttribute("data-btn-option-visual") == option_active){
+                btn.classList.add("active");
+                window.localStorage.setItem("data_btn_option_visual", option_active);
+
+            } else {
+                btn.classList.remove("active");
+            }
+        });
+        // ----
+        containers.forEach((visual)=>{
+            if(visual.getAttribute("data-container-visible") == option_active){
+                visual.classList.add("active");
+            } else {
+                visual.classList.remove("active");
+            }
+        });
+
+        // if (update_data){
+        update_filter_company_names(false);
+        // }
+
+    }
+
+    async function selectVisual_Generic(){
+
+        var option_active, all_btns, containers;
+
+        option_active = await window.localStorage.getItem("data_btn_option_visual");
+        try {await document.querySelector(`[data-btn-option-visual="${option_active}"]`).classList.add("active");} catch (error) {};
+        // ----
+        if (option_active === "container-tabela-info-hist-balancetes") {
+            document.querySelector(".container-cards-resume").classList.remove("active");
+            document.querySelector(".container-cards-resume-02").classList.add("active");
+            // ----
+            document.querySelector(".block-filter-year").classList.remove("active");
+            document.querySelector(".block-filter-month").classList.remove("active");
+            document.querySelector(".container-filter-date-range").classList.add("active");
+
+        } else {
+            document.querySelector(".container-cards-resume").classList.add("active");
+            document.querySelector(".container-cards-resume-02").classList.remove("active");
+            // ----
+            document.querySelector(".block-filter-year").classList.add("active");
+            document.querySelector(".block-filter-month").classList.add("active");
+            document.querySelector(".container-filter-date-range").classList.remove("active");
+        }
+
+        // ----
+
+        if (option_active == null) {
+            option_active = "container-charts";
+            option_active = await window.localStorage.setItem("data_btn_option_visual", option_active);
+        }
+        // ----
+        all_btns = await document.querySelectorAll("[data-btn-option-visual]");
+        containers = await document.querySelectorAll("[data-container-visible]");
+
+        all_btns.forEach((btn)=>{
+
+            if( btn.getAttribute("data-btn-option-visual") == option_active){
+                btn.classList.add("active");
+            
+            } else {
+                btn.classList.remove("active");
+            }
+        });
+        // ----
+        containers.forEach((visual)=>{
+            if(visual.getAttribute("data-container-visible") == option_active){
+                visual.classList.add("active");
+            } else {
+                visual.classList.remove("active");
+            }
+        });
+    }
+
+</script>
+
+
+
+<script>
+    
+    function showElementBoxDropdown(element){
+        var search_filter, block_dropdown_all_companies;
+        search_filter = element.getAttribute("data-input-search");
+
+        block_dropdown_all_companies = document.querySelector(`.block-${search_filter}`);
+        block_dropdown_all_companies.classList.add("active");
+    }
+
+    function hideBox(element){
+        var block_element = element.getAttribute("data-hide-element");
+        document.querySelector(`.${block_element}`).classList.remove("active");
+    }
+
+    function filter_element_dropdown_all_companies(element){
+
+        var value_filter, block_elements, elements_filters, id_acessorias;
+        value_filter = element.value.toUpperCase();
+        block_elements = element.getAttribute("data-input-search");
+        elements_filters = document.querySelector(`.block-${block_elements}`).querySelectorAll("span");
+        // console.log(elements_filters)
+        // console.log(block_elements)
+        
+        for (let i = 0; i < elements_filters.length; i++){
+            console.log(elements_filters[i])
+            if (i > 0){
+                id_acessorias = elements_filters[i].querySelector("input").getAttribute("data-checkbox-company");
+                name_company = elements_filters[i].querySelector("p").innerText.toUpperCase();
+
+                if (name_company.indexOf(value_filter) > -1){
+                    elements_filters[i].style.display = "flex";
+                } else {
+                    elements_filters[i].style.display = "none";
+                }
+
+
+                console.log(`
+                    value_filter: ${value_filter}
+                    id_acessorias: ${id_acessorias}
+                    name_company: ${name_company}
+                `)
+
+            }
+        }
+
+    }
+    
+    function filter_element_dropdown_all_colab(element){
+        var value_filter, block_elements, elements_filters, id_acessorias;
+        value_filter = element.value.toUpperCase();
+        block_elements = element.getAttribute("data-input-search");
+        elements_filters = document.querySelector(`.block-${block_elements}`).querySelectorAll("span");
+        // console.log(elements_filters)
+        // console.log(block_elements)
+        
+        for (let i = 0; i < elements_filters.length; i++){
+            console.log(elements_filters[i])
+            if (i > 0){
+                id_acessorias = elements_filters[i].querySelector("input").getAttribute("data-checkbox-colab");
+                name_colab = elements_filters[i].querySelector("p").innerText.toUpperCase();
+
+                if (name_colab.indexOf(value_filter) > -1){
+                    elements_filters[i].style.display = "flex";
+                } else {
+                    elements_filters[i].style.display = "none";
+                }
+
+
+                console.log(`
+                    value_filter: ${value_filter}
+                    id_acessorias: ${id_acessorias}
+                    name_colab: ${name_colab}
+                `)
+
+            }
+        }
+
+    }
+
+    // ----------------------------------------------------------------
+
+    function closeMoreDetails(element){
+        document.querySelector(".container-datails-row-table").classList.remove("active");
+    }
+
+    function displayMoreDetails(element){
+
+        document.querySelector(".container-datails-row-table").classList.toggle("active");
+        let btn_id_company, row_company, data_all_companies;
+
+        
+        btn_id_company = element.getAttribute("data-btn-id-company");
+        row_company = document.querySelector(`[data-row-id-company="${btn_id_company}"]`);
+
+
+        let request = getCompany("companies", btn_id_company).then((data)=> {
+
+            data.onsuccess = function(event){
+                console.log(` ------------------------ data_company | ${btn_id_company} ------------------------`)
+                let data_company = event.target.result;
+                console.log(data_company)
+                
+                id_acessorias = data_company["id_acessorias"];
+                // console.log(`>>>> id_acessorias: ${id_acessorias} | id_acessorias: ${id_acessorias}`)
+                
+                document.querySelector(`[data-info-datail="id_acessorias"]`).innerText = data_company["id_acessorias"];
+                document.querySelector(`[data-info-datail="cnpj"]`).innerText = data_company["cnpj"];
+                document.querySelector(`[data-info-datail="razao_social"]`).innerText = data_company["razao_social"];
+                document.querySelector(`[data-info-datail="regime"]`).innerText = data_company["regime"];
+                document.querySelector(`[data-info-datail="fiscal"]`).innerText = data_company["fiscal"];
+                document.querySelector(`[data-info-datail="contabil"]`).innerText = data_company["contabil"];
+    
+                document.querySelector(`[data-info-datail="lancado_meses_atraso"]`).innerText = data_company["lancado_meses_atraso"];
+                document.querySelector(`[data-info-datail="lancado_dt_entrega"]`).innerText = data_company["lancado_dt_entrega"];
+                document.querySelector(`[data-info-datail="lancado_status_entrega"]`).innerText = data_company["lancado_status_entrega"];
+                document.querySelector(`[data-info-datail="lancado_comp"]`).innerText = data_company["lancado_comp"];
+                
+                document.querySelector(`[data-info-datail="mensal_meses_atraso"]`).innerText = data_company["mensal_meses_atraso"];
+                document.querySelector(`[data-info-datail="mensal_dt_entrega"]`).innerText = data_company["mensal_dt_entrega"];
+                document.querySelector(`[data-info-datail="meses_status_entrega"]`).innerText = data_company["mensal_status_entrega"];
+                document.querySelector(`[data-info-datail="mensal_comp"]`).innerText = data_company["mensal_comp"];
+                
+                document.querySelector(`[data-info-datail="periodo_meses_atraso"]`).innerText = data_company["periodo_meses_atraso"];
+                document.querySelector(`[data-info-datail="periodo_DT"]`).innerText = data_company["periodo_DT"];
+                document.querySelector(`[data-info-datail="periodo_status"]`).innerText = data_company["periodo_status"];
+                document.querySelector(`[data-info-datail="periodo_comp"]`).innerText = data_company["periodo_comp"];
+                
+                document.querySelector(`[data-info-datail="lancado_status_entrega"]`).setAttribute("data-status-entrega", "status-" + data_company["lancado_status_entrega"]);
+                document.querySelector(`[data-info-datail="meses_status_entrega"]`).setAttribute("data-status-entrega", "status-" + data_company["mensal_status_entrega"]);
+                document.querySelector(`[data-info-datail="periodo_status"]`).setAttribute("data-status-entrega", "status-" + data_company["periodo_status"]);
+            }
+        });
+
+    }
+
+    async function displayMoreDetails_AllDeliveriesBalancetes(element){
+
+        document.querySelector(".container-datails-row-table").classList.toggle("active");
+        let btn_id_company, row_company, data_all_companies;
+
+
+        btn_id_company = parseInt(element.getAttribute("data-btn-id-company"));
+        row_company = document.querySelector(`[data-row-id-company="${btn_id_company}"]`);
+
+
+        let request = getCompany("all_deliveries_balancetes", btn_id_company).then((data)=> {
+
+            data.onsuccess = function(event){
+                console.log(` ------------------------ data_company | ${btn_id_company} ------------------------`)
+                let data_company = event.target.result;
+                console.log(data_company)
+
+
+                 document.querySelector(`[data-info-datail="id_acessorias"]`).innerText = data_company["id_empresa"];
+                 document.querySelector(`[data-info-datail="cnpj"]`).innerText = data_company["cnpj"];
+                 document.querySelector(`[data-info-datail="razao_social"]`).innerText = data_company["empresa"];
+                 document.querySelector(`[data-info-datail="regime"]`).innerText = data_company["regime"];
+                 document.querySelector(`[data-info-datail="fiscal"]`).innerText = data_company["fiscal"];
+                 document.querySelector(`[data-info-datail="contabil"]`).innerText = data_company["contabil"];
+
+
+                // ------------------------------------------------------------------------------------
+                 document.querySelector(`[data-info-datail="lancado_meses_atraso"]`).innerText = "-";
+                 document.querySelector(`[data-info-datail="lancado_dt_entrega"]`).innerText = "-";
+                 document.querySelector(`[data-info-datail="lancado_status_entrega"]`).innerText = "-";
+                 document.querySelector(`[data-info-datail="lancado_comp"]`).innerText = "-";
+                 document.querySelector(`[data-info-datail="lancado_status_entrega"]`).setAttribute("data-status-entrega", "-" );
+                // ----
+                document.querySelector(`[data-info-datail="mensal_meses_atraso"]`).innerText = "-";
+                document.querySelector(`[data-info-datail="mensal_dt_entrega"]`).innerText = "-";
+                document.querySelector(`[data-info-datail="meses_status_entrega"]`).innerText = "-";
+                document.querySelector(`[data-info-datail="mensal_comp"]`).innerText = "-";
+                document.querySelector(`[data-info-datail="meses_status_entrega"]`).setAttribute("data-status-entrega", "-" );
+                // ----
+                document.querySelector(`[data-info-datail="periodo_meses_atraso"]`).innerText = "-";
+                document.querySelector(`[data-info-datail="periodo_DT"]`).innerText = "-";
+                document.querySelector(`[data-info-datail="periodo_status"]`).innerText = "-";
+                document.querySelector(`[data-info-datail="periodo_comp"]`).innerText = "-";
+                document.querySelector(`[data-info-datail="periodo_status"]`).setAttribute("data-status-entrega", "-" );
+                // ------------------------------------------------------------------------------------
+                
+                if (data_company["obrigacao"] == "BALANCETE LANÇADO"){
+                    console.log(">>>>> BALANCETE LANÇADO")
+                    document.querySelector(`[data-info-datail="lancado_meses_atraso"]`).innerText = data_company["meses_atraso_historico"];
+                    document.querySelector(`[data-info-datail="lancado_dt_entrega"]`).innerText = data_company["dt_entrega"];
+                    document.querySelector(`[data-info-datail="lancado_status_entrega"]`).innerText = data_company["status_entrega-historico"];
+                    document.querySelector(`[data-info-datail="lancado_comp"]`).innerText = data_company["competencia"];
+                    document.querySelector(`[data-info-datail="lancado_status_entrega"]`).setAttribute("data-status-entrega", "status-" + data_company["status_entrega-historico"]);
+                } 
+                else if (data_company["obrigacao"] == "BALANCETE MENSAL"){
+                    console.log(">>>>> BALANCETE MENSAL")
+                    document.querySelector(`[data-info-datail="mensal_meses_atraso"]`).innerText = data_company["meses_atraso_historico"];
+                    document.querySelector(`[data-info-datail="mensal_dt_entrega"]`).innerText = data_company["dt_entrega"];
+                    document.querySelector(`[data-info-datail="meses_status_entrega"]`).innerText = data_company["status_entrega-historico"];
+                    document.querySelector(`[data-info-datail="mensal_comp"]`).innerText = data_company["competencia"];
+                    document.querySelector(`[data-info-datail="meses_status_entrega"]`).setAttribute("data-status-entrega", "status-" + data_company["status_entrega-historico"]);
+                }
+            }
+        });
+
+        }
+
+    function expandTableBalanceteMensal(){
+        var table;
+        table = document.querySelector(".table-all-companies").classList.toggle("expanded-58");
+    }
+    
+    function testeClick(event, array){
+        console.log(array)
+    }
+
+</script>
+
+
+
+
+
+{% endblock %}

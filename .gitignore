@@ -1,0 +1,8 @@
+__pycache__
+base_temp/
+test.py
+*.json
+*.csv
+*.xls
+*.xlsx
+*.pdf

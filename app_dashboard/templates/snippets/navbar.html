@@ -1,0 +1,61 @@
+{% load static %}
+<aside class="sidebar">
+
+    <span class="block-btn-mode-sidebar">
+        <i class="fa-solid fa-chevron-right" onclick="modeMenuSidebar(this);"></i>
+    </span>
+
+
+    <header class="sidebar-header">
+        <img class="logo-img-sidebar" src="{% static 'logo gaulke contabil azul claro.png' %}" alt="logo">
+    </header>
+
+    <nav>
+
+        <button>
+            <span>
+                <a href="{% url 'homepage' %}">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="data-info-sidebar">
+                        Home
+                    </span>
+                </a>
+            </span>
+        </button>
+        
+        <button>
+            <span>
+                <a href="{% url 'importacoes_JB' %}">
+                    <i class="fa-solid fa-upload"></i>
+                    <span class="data-info-sidebar">
+                        Importações JB
+                    </span>
+                </a>
+            </span>
+        </button>
+
+        <button>
+            <span>
+                <a href="{% url 'dashboards' %}">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span class="data-info-sidebar">
+                        Dashboards
+                    </span>
+                </a>
+            </span>
+        </button>
+        
+    </nav>
+
+    <article class="block-profile-menu-user">
+        <span>
+            <img class="logo-img-sidebar" src="{% static 'perfil_leonardo.jpeg' %}" alt="logo">
+            <span class="data-info-sidebar">Leonardo</span>
+        </span>
+        <span class="block-btn-logout">
+            <button class="data-info-sidebar">Sair</button>
+            <i class="fa-solid fa-right-from-bracket"></i>
+        </span>
+    </article>
+
+</aside>
