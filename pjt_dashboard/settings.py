@@ -18,7 +18,7 @@ with open("config_app.json", "r") as f:
 
 
 DEBUG  = file["HOSTS"]["DEBUG"]
-DEBUG  = file["HOSTS"]["SECRET_KEY"]
+SECRET_KEY  = file["HOSTS"]["SECRET_KEY"]
 ALLOWED_HOSTS = file["HOSTS"]["ALLOWED_HOSTS"]
 CSRF_TRUSTED_ORIGINS  = file["HOSTS"]["CSRF_TRUSTED_ORIGINS"]
 SECURE_CROSS_ORIGIN_OPENER_POLICY = None
