@@ -13,6 +13,7 @@ DB_Request.onupgradeneeded = function(event){
     db.createObjectStore("balancete_mensal", {keyPath: "id_empresa"});
     db.createObjectStore("balancete_lancado", {keyPath: "id_empresa"});
     db.createObjectStore("all_deliveries_balancetes", {keyPath: "id"});
+    db.createObjectStore("data_matriz_apont_horas", {keyPath: "id"});
     // var objectStore = db.createObjectStore("deliveries_regime", {keyPath: "id_acessorias"});
     // console.log(`>> objectStore: ${objectStore}`)
 }

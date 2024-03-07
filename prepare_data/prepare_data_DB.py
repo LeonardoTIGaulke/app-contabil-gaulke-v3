@@ -494,10 +494,12 @@ class PrepareData_DB:
 
             obj_all_companies = list()
             obj_balancetes = list()
+            obj_apont_horas = list()
 
             DB_all_companies = connections["db_gaulke_contabil"]
-            TABLE_NAME_ALL_COMPANIES =  file["DATABASE"]["TABLE_NAME_ALL_COMPANIES"]
-            TABLE_NAME_ALL_BALANCETES =  file["DATABASE"]["TABLE_NAME_ALL_BALANCETES"]
+            TABLE_NAME_ALL_COMPANIES        = file["DATABASE"]["TABLE_NAME_ALL_COMPANIES"]
+            TABLE_NAME_ALL_BALANCETES       = file["DATABASE"]["TABLE_NAME_ALL_BALANCETES"]
+            TABLE_NAME_MATRIZ_APONT_HORAS   = file["DATABASE"]["TABLE_NAME_MATRIZ_APONT_HORAS"]
 
             print("\n\n\n ----------------- db_gaulke_contabil ----------------- ")
             print(DB_all_companies)
@@ -505,6 +507,9 @@ class PrepareData_DB:
             print(TABLE_NAME_ALL_COMPANIES)
             print("\n ----------------- TABLE_NAME_ALL_BALANCETES ----------------- ")
             print(TABLE_NAME_ALL_BALANCETES)
+            print("\n ----------------- TABLE_NAME_MATRIZ_APONT_HORAS ----------------- ")
+            print(TABLE_NAME_MATRIZ_APONT_HORAS)
+
             print("\n\n")
 
             with DB_all_companies.cursor() as cursor:
@@ -553,9 +558,40 @@ class PrepareData_DB:
                             "update_at":            result[17],
                         })
                     
-
+                
+                # --------------------------------------------------------------------------------------
+                # ----------------------------- TABLE_NAME_ALL_BALANCETES ------------------------------
+                cursor.execute(f"""
+                    SELECT * FROM {TABLE_NAME_MATRIZ_APONT_HORAS}
+                        INNER JOIN {TABLE_NAME_ALL_COMPANIES}
+                        ON {TABLE_NAME_MATRIZ_APONT_HORAS}.codigo_empresa = {TABLE_NAME_ALL_COMPANIES}.id_acessorias;
+                """)
+                rows = cursor.fetchall()
+                for result in rows:
+                    obj_apont_horas.append(
+                        {
+                            "id":               result[0],
+                            "data_apont":       result[1],
+                            "horario_inicio":   result[2],
+                            "horario_fim":      result[3],
+                            "competencia":      result[4],
+                            "codigo_empresa":   result[5],
+                            "razao_social":     result[6],
+                            "atividade":        result[7],
+                            "observacao":       result[8],
+                            "username":         result[9],
+                            "setor":            result[10],
+                            "mes":              result[11],
+                            "ano":              result[12],
+                            "tempo":            result[13],
+                            "regime":           result[14],
+                            "regime":           result[14],
+                            "contabil":         result[48],
+                        })
+            
             df_all_companies = pd.DataFrame.from_dict(data=obj_all_companies, orient="columns")
             df_all_balancetes = pd.DataFrame.from_dict(data=obj_balancetes, orient="columns")
+            df_apont_horas = pd.DataFrame.from_dict(data=obj_apont_horas, orient="columns")
             # df_all_companies.to_excel("df_all_companies.xlsx")
             # df_all_balancetes.to_excel("df_all_balancetes.xlsx")
 
@@ -564,12 +600,20 @@ class PrepareData_DB:
 
             resume_deliveries_regime = self.resume_deliveries_regime(df_all_companies=df_all_companies)
             resume_deliveries_meses = self.resume_deliveries_meses(df_all_companies=df_all_companies)
+            resume_deliveries_matriz_apont_horas = df_apont_horas.to_dict("index")
+
+
+            print("\n\n ------------------------------- df_apont_horas ------------------------------- ")
+            print(df_apont_horas)
             
             data_all_companies.update({
                 "resume_deliveries_regime": resume_deliveries_regime
             })
             data_all_companies.update({
                 "resume_deliveries_meses": resume_deliveries_meses
+            })
+            data_all_companies.update({
+                "data_matriz_apont_horas": resume_deliveries_matriz_apont_horas
             })
             
             return {

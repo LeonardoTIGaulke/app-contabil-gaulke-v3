@@ -36,7 +36,197 @@ function update_filter_company_names(update_cards, update_chart){
             update_table_all_deliveries_balancetes(true, 20, all_deliveries_balancetes, update_chart);
         }
     });
+    // ----
+    request = getAllCompanies("data_matriz_apont_horas").then((data) => {
+        data.onsuccess = function(event) {
+            console.log(" ---- success ---- ")
+            data_matriz_apont_horas = event.target.result;
+            let tempo_matriz = calcularTempo(data_matriz_apont_horas).then((data)=>{
+                // console.log(data)
+            });
+        }
+    });
 }
+
+// ----------------------------------
+async function calcularTempo(data_matriz_apont_horas) {
+
+    let arr_id_filter = await checkValuesMratizApontHoras(data_matriz_apont_horas);
+    console.log("\n\n ----------------------------------------- arr_id_filter ----------------------------------------- ")
+    console.log(arr_id_filter)
+
+
+    let data_matriz = new Array();
+    let arr_check_colab = new Array();
+    let data_colaborador = new Array();
+
+    for (let i in  data_matriz_apont_horas){
+
+        // console.log(`
+        //     -------------------- | includes: ${i} | type: ${typeof(i)}
+        // `)
+        if (arr_id_filter.includes(i)){
+
+            let colab = await data_matriz_apont_horas[i]["username"];
+            let tempo = await data_matriz_apont_horas[i]["tempo"];
+    
+    
+            let [horas, minutos] = await tempo.split(':');
+    
+            if (!arr_check_colab.includes(colab)){
+                
+                if (parseInt(horas) && parseInt(minutos) >= 0){
+    
+                    data_colaborador[colab] = await {
+                        "data": [data_matriz_apont_horas[i]],
+                        "horas_totais": parseInt(horas),
+                        "minutos_totais": parseInt(minutos),
+                    }
+    
+                } else {
+                    data_colaborador[colab] = await {
+                        "data": [data_matriz_apont_horas[i]],
+                        "horas_totais": 0,
+                        "minutos_totais": 0,
+                    }
+                }
+                
+                arr_check_colab.push(colab);
+                
+            } else {
+                
+                await data_colaborador[colab]["data"].push(data_matriz_apont_horas[i]);
+    
+                if (parseInt(horas) && parseInt(minutos) >=0 ) {
+                    data_colaborador[colab]["horas_totais"] += parseInt(horas);
+                    data_colaborador[colab]["minutos_totais"] += parseInt(minutos);
+                }
+                
+            }
+            await data_matriz.push(tempo);
+        }
+    }
+
+
+    // console.log(" ------------------- data_colaborador ------------------- ")
+    // console.log(data_colaborador)
+    
+    for ( let colab in data_colaborador){
+
+        console.log(` ---------------- data_colaborador | colab: ${colab} ---------------- `)
+        let data = data_colaborador[colab];
+        let data_apont = data["data"];
+        let horas_totais    = data["horas_totais"];
+        let minutos_totais  = data["minutos_totais"];
+
+        let tt_horas = 0;
+        let tt_minutos = 0;
+
+  
+        for (let i in data_apont){
+            let id_aux = String(data_apont[i]["id"]);
+
+            if( arr_id_filter.includes( id_aux )) {
+                tt_horas += parseInt(horas_totais);
+                tt_minutos += parseInt(minutos_totais);
+            } 
+        }
+
+        data["horas_totais"] = await tt_horas;
+        data["minutos_totais"] = await tt_minutos;
+
+        console.log(`
+            ------------------------------------
+            horas_totais: ${horas_totais}
+            minutos_totais: ${minutos_totais}
+            ------------------
+            tt_horas: ${tt_horas}
+            tt_minutos: ${tt_minutos}
+
+        `)
+        
+    
+    }
+    // let totalHoras = 0;
+    // let totalMinutos = 0;
+
+    // // for (let i in data["data"]){
+
+    // //     id_aux = String(data["data"][i]["id"]);
+
+    // //     if (arr_id_filter.includes(id_aux)){
+            
+    // //         if (parseInt(totalHoras) >= 0 && parseInt(totalMinutos) >= 0){
+
+    // //             totalHoras += data["data"][i]["horas_totais"];
+    // //             totalMinutos += data["data"][i]["minutos_totais"];
+
+    // //             console.log(`
+    // //                 >> id_aux: ${id_aux}
+    // //                 >> colab: ${colab}
+    // //                 >> totalHoras: ${totalHoras}
+    // //                 >> totalMinutos: ${totalMinutos}
+    // //             `)
+    // //         }
+
+    // //     }
+    // // }
+    
+
+    // if (totalMinutos >= 60) {
+    //     const minutosExtrasColab = Math.floor(totalMinutos / 60);
+    //     totalHoras += minutosExtrasColab;
+    //     totalMinutos = totalMinutos % 60;
+    // }
+    
+    // data["horas_totais"] = totalHoras;
+    // data["minutos_totais"] = totalMinutos;
+    
+
+    // let resume_apont_colab = `Total: ${h} horas e ${m} minutos | tempo: ${tempo_tt} | tt_apont: ${tt_apont}`;
+    // console.log(resume_apont_colab)
+    
+
+    // console.log(" ------------ data_colaborador ajustado ------------ ")
+    // console.log(data_colaborador)
+    // create_chart_900(data_colaborador);
+
+
+        // // --------------------------------------------------------------------------------------
+        // let totalHoras = 0;
+        // let totalMinutos = 0;
+      
+        // for (const tempo of await data_matriz) {
+        //     const [horas, minutos] = await tempo.split(':'); // Dividir o tempo em horas e minutos
+        //     if(parseInt(horas) >= 0 && parseInt(minutos) >= 0){
+        //         totalHoras += await parseInt(horas);
+        //         totalMinutos += await parseInt(minutos);
+        //     }
+        // }
+    
+        // // Se os minutos excederem 60, ajustar as horas e minutos
+        // if (totalMinutos >= 60) {
+        //     const minutosExtras = await Math.floor(totalMinutos / 60);
+        //     totalHoras += await minutosExtras;
+        //     totalMinutos = await totalMinutos % 60;
+        // }
+    
+    
+        // let resume_geral = `Total: ${totalHoras} horas e ${totalMinutos} minutos`;
+        // console.log(resume_geral)
+        // return await resume_geral;
+    // });
+
+
+
+
+    
+}
+
+
+
+
+
 
 
 function updateCards_Resume_Totais(
@@ -148,8 +338,37 @@ function selectDatePrincipalFilter(action){
         update_filter_company_names(true);
     }
     return null;
-
 }
+function getDateRangePrincipalFilter(){
+
+    let date_init   = document.querySelector(`[data-range-name="date-init"]`).value;
+    let date_final  = document.querySelector(`[data-range-name="date-final"]`).value;
+
+    if (date_init && date_final != ""){
+        // ----
+        document.querySelector(`[data-range-name="date-final"]`).min = date_init;
+        // ----
+        date_init_split = date_init.split("-");
+        date_final_split = date_final.split("-");
+        // ----
+        date_init_ajd = convertToDate(date_init_split[0], date_init_split[1] -1, date_init_split[2]);
+        date_final_ajd = convertToDate(date_final_split[0], date_final_split[1] -1, date_final_split[2]);
+        // ----
+        date_init_text = `${date_init_split[2]}/${date_init_split[1]}/${date_init_split[0]}`;
+        date_final_text = `${date_final_split[2]}/${date_final_split[1]}/${date_final_split[0]}`;
+        
+        return {
+            "date_init_ajd": date_init_ajd,
+            "date_final_ajd": date_final_ajd,
+            "date_init_text": date_init_text,
+            "date_final_text": date_final_text,
+        }
+    }
+    return null;
+}
+
+
+
 function convertToDate(year, month, day){
     date_string = new Date(year, month, day)
     return date_string;
@@ -297,6 +516,7 @@ async function checkBalancete(data_companies) {
     }
     return await list_id_companies_check;
 }
+
 async function checkAllDeliveriesBalancete(data_companies) {
 
     let filter_month, filter_year, filter_regime_agrup, filter_type_company, filter_company_name, filter_id_database_deliveries_balancetes;
@@ -421,6 +641,68 @@ async function checkAllDeliveriesBalancete(data_companies) {
                 try {document.querySelector(`[data-row-id-database-deliveries-balancetes="${id_database}"]`).remove();} catch (error) {};
             }
         }
+    }
+    return await list_id_companies_check;
+}
+async function checkValuesMratizApontHoras(data_apont_horas) {
+
+    let status_range_date = false;
+    let date_range = getDateRangePrincipalFilter();
+
+    if (date_range != null){
+        // ----
+        let date_init_ajd   = date_range["date_init_ajd"];
+        let date_final_ajd  = date_range["date_final_ajd"];
+        // ----
+        let date_init_text  = date_range["date_init_text"];
+        let date_final_text = date_range["date_final_text"];
+
+    } else {
+        status_range_date = true;
+    }
+
+
+    filter_type_company = await JSON.parse( window.localStorage.getItem("filter_type_company") )["filter"];
+    filter_company_name = await JSON.parse( window.localStorage.getItem("filter_company_name") )["filter"];
+    filter_colaborador = await JSON.parse( window.localStorage.getItem("filter_colaborador") )["filter"];
+    
+    // ----
+
+    list_id_companies_check = new Array();
+    for (let i in data_apont_horas){
+
+        id_acessorias = await String(data_apont_horas[i]["codigo_empresa"]);
+        id_aux = await String(data_apont_horas[i]["id"]);
+        contabil = await String(data_apont_horas[i]["username"]);
+        let data_da_entrega = null;
+        
+        check_date_range = false;
+        if (status_range_date){
+            check_date_range = true;
+        }
+        else {
+
+            data_da_entrega = await data_apont_horas[i]["data_apont"];
+
+            if(data_da_entrega != "-" && data_da_entrega != null){
+                data_da_entrega_split = data_da_entrega.split("/");
+                data_da_entrega = await convertToDate(data_da_entrega_split[2], data_da_entrega_split[1]-1, data_da_entrega_split[0]);
+
+                if (data_da_entrega >= date_init_ajd && data_da_entrega <= date_final_ajd) {
+                    check_date_range = true;
+                }
+            }
+        }
+
+        // ---------------------------------------------------------------------------------------------------------------
+        const idAcessoriasValido = filter_company_name.length === 0 || await isInArray(id_acessorias, filter_company_name);
+        // status_range_date
+        if ( idAcessoriasValido && check_date_range && data_da_entrega != null) {
+            
+            await list_id_companies_check.push(id_aux);
+            
+        }
+     
     }
     return await list_id_companies_check;
 }

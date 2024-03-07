@@ -191,7 +191,8 @@
 
 
 .container-dashboards,
-.container-tabela-info-hist-balancetes {
+.container-tabela-info-hist-balancetes,
+.container-analise-por-apont-horas {
     position: relative;
     width: 100%;
     height: 99.5vh;
@@ -248,18 +249,21 @@
 
 .container-dashboards::-webkit-scrollbar,
 .container-tabela-info-hist-balancetes::-webkit-scrollbar,
+.container-analise-por-apont-horas::-webkit-scrollbar,
 .table-all-companies::-webkit-scrollbar,
 .table-balancetes-lancados::-webkit-scrollbar,
 .table-balancetes-mensal::-webkit-scrollbar,
 .table-all-deliveries-balancetes::-webkit-scrollbar,
 .container-datails-row-table > .block-details::-webkit-scrollbar,
-.block-charts-generic::-webkit-scrollbar {
+.block-charts-generic::-webkit-scrollbar 
+{
     background-color: transparent;
     width: 5px;
     height: 2.5px;
 }
 .container-dashboards::-webkit-scrollbar-thumb,
 .container-tabela-info-hist-balancetes::-webkit-scrollbar-thumb,
+.container-analise-por-apont-horas::-webkit-scrollbar-thumb,
 .table-all-companies::-webkit-scrollbar-thumb,
 .table-balancetes-lancados::-webkit-scrollbar-thumb,
 .table-balancetes-mensal::-webkit-scrollbar-thumb,
@@ -292,7 +296,8 @@
 
 }
 .container-tabela-info,
-.container-tabela-info-hist-balancetes {
+.container-tabela-info-hist-balancetes,
+.container-analise-por-apont-horas {
     /* .container-tabela-info-hist-balancetes */
     display: none;
     padding: 15px;

@@ -79,6 +79,12 @@ function generateColors(numColors) {
 
     return colors;
 }
+function limitarNome(nomeCompleto) {
+    if (nomeCompleto.length > 11) {
+        return nomeCompleto.slice(0, 11) + '...';
+    }
+    return nomeCompleto;
+}
 
 function create_chart_0(tt_dentro_prazo, tt_fora_prazo) {
         
@@ -666,8 +672,6 @@ async function create_chart_500(data_chart_01, data_chart_02, labels_chart ){
         }
     });
 }
-
-
 function create_chart_600(responsaveis_contabil_chart){
     try {chart_600.destroy();} catch (error) {};
 
@@ -768,8 +772,6 @@ function create_chart_600(responsaveis_contabil_chart){
         }
     });
 }
-
-
 async function create_chart_700(data_to_pareto_month){
 
     console.log(" ---------------------- data_to_pareto_month ---------------------- ")
@@ -1166,10 +1168,141 @@ async function create_chart_800(data_company_aux){
         }
     });
 }
+async function create_chart_900(data_chart){
 
-function limitarNome(nomeCompleto) {
-    if (nomeCompleto.length > 11) {
-        return nomeCompleto.slice(0, 11) + '...';
+    console.log(" ---------------------- data_chart ---------------------- ")
+    console.log(data_chart)
+
+    try {chart_900.destroy();} catch (error) {};
+
+    let labels = [];
+    let data = [];
+    let data_tt_apont = [];
+    let tt_acumulado = 0;
+    
+    for (let colab in data_chart){
+        labels.push(await colab);
+        h = await data_chart[colab]["horas_totais"];
+        m = await data_chart[colab]["minutos_totais"];
+        tempo_tt = await data_chart[colab]["tempo_tt"];
+        tt_apont = await data_chart[colab]["tt_apont"];
+
+        data.push(tempo_tt);
+        data_tt_apont.push(tt_apont);
+
+        console.log(`>>>>>>>>>>> COLAB: ${colab}`)
+        console.log(data_chart[colab])
     }
-    return nomeCompleto;
+
+    console.log("\n\n\n\n ------------------------------- labels | data | data_tt_apont ")
+    console.log(labels)
+    console.log(data)
+    console.log(data_tt_apont)
+
+
+
+    const ctx = document.getElementById('myChart-900');
+
+    chart_900 = new Chart(ctx, {
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    type: 'bar',
+                    order: 1,
+                    label: 'Colaborador',
+                    data: data,
+                    borderColor: 'rgb(255, 99, 132)',
+                    backgroundColor: '#f49d37',
+                    datalabels: {
+                        align: 'top',
+                        anchor: 'end',
+                        offset: 10,
+                        color: "#595963",
+                        // backgroundColor: '#f4f4f9',
+                        borderRadius: 5,
+                    }
+                },
+                {
+                    type: 'line',
+                    order: 0,
+                    label: 'Total apont.',
+                    data: data_tt_apont,
+                    fill: false,
+                    borderColor: '#0D6DAC',
+                    datalabels: {
+                        align: 'top',
+                        anchor: 'end',
+                        offset: 5,
+                        color: "#000",
+                        backgroundColor: '#f4f4f9',
+                        borderRadius: 5,
+                    }
+                }
+            ]
+        },
+        plugins: [ChartDataLabels],
+        options: {
+            
+            responsive: true,
+            maintainAspectRatio: false,
+            autoPadding: true,
+            indexAxis: 'x',
+            plugins: {
+                legend: {
+                    display: true,
+                },
+                title: { 
+                    display: true,
+                    text: ['Representação de apont. de horas', '', /*'More Info Chart'], */],
+                    fullSize: false,
+                    position: 'top',
+                    font: {
+                        style: 'normal',
+                        size: 16,
+                    }, 
+                    padding: {
+                        top: 20,
+                        bottom: 10,
+                    } 
+                }
+            },
+            scales: {
+                x: {
+
+                    align: 'start',
+                    ticks: {
+                        minRotation: 45,
+                        maxRotation: 45,
+                        display: true,
+                        beginAtZero: true,
+                        padding: 25,
+                        callback: function(value, index, values) {
+                            // ----
+                            return limitarNome(labels[index]);
+                        }
+                    },
+                    border: {
+                        display: false,
+                    },
+                    grid: {
+                        display: false
+                    },
+                },
+                y: {
+                    ticks: {
+                        display: true,
+                        beginAtZero: true,
+                        padding: 25,
+                    },
+                    border: {
+                        display: false,
+                    },
+                    grid: {
+                        display: true
+                    },
+                },
+            },
+        }
+    });
 }

@@ -257,7 +257,8 @@
                     <input type="button" value="atividades" data-btn-option-visual="container-tabela-info" onclick="selectVisualDashboard(this, false);">
                     <input type="button" value="histórico de balancetes" data-btn-option-visual="container-tabela-info-hist-balancetes" onclick="selectVisualDashboard(this, false);">
                     <!-- ---- -->
-                    <input type="button" class="btn-inactive" value="análise por colaborador" data-btn-option-visual="container-analise-por-colaborador" onclick="selectVisualDashboard(this, false);">
+                    <input type="button" value="análise apont. horas" data-btn-option-visual="container-analise-por-apont-horas" onclick="selectVisualDashboard(this, false);">
+
                     <input type="button" class="btn-inactive" value="análise por clientes" data-btn-option-visual="container-analise-por-clientes" onclick="selectVisualDashboard(this, false);">
                     <input type="button" class="btn-inactive" value="análise por setor" data-btn-option-visual="container-analise-por-setor" onclick="selectVisualDashboard(this, false);">
                     <input type="button" class="btn-inactive" value="projeção" data-btn-option-visual="container-projecao" onclick="selectVisualDashboard(this, false);">
@@ -687,6 +688,14 @@
 
     </div>
 
+    <div class="container-analise-por-apont-horas" data-container-visible="container-analise-por-apont-horas">
+        <div style="width: 100%; height: 100%;">
+            <canvas id="myChart-900"></canvas>
+        </div>
+
+    </div>
+
+
 
 
 
@@ -720,15 +729,6 @@
 <script>
     
     window.onload = function (){
-
-        
-        // try {
-        //     option_active = JSON.parse( window.localStorage.getItem("data_btn_option_visual") );
-        //     document.querySelector(`[data-btn-option-visual="${option_active}"]`).classList.add("active")
-        // }
-        // catch (error) {
-        //     JSON.stringify( window.localStorage.setItem("data_btn_option_visual", "container-charts") );
-        // };
 
         try {
             JSON.parse( window.localStorage.getItem("filter_month") )["filter"];
@@ -818,6 +818,8 @@
             balancete_mensal = data["data"]["data_all_companies"]["obj_balancete_mensal"];
             balancete_lancado = data["data"]["data_all_companies"]["obj_balancete_lancado"];
             data_all_deliveries_balancetes = data["data"]["data_all_companies"]["obj_all_deliveries_balancetes"];
+            data_matriz_apont_horas = data["data"]["data_all_companies"]["data_matriz_apont_horas"];
+
             
             document.querySelector(`[data-card-resume="info"]`).querySelectorAll("span")[1].innerText = data["data"]["data_all_companies"]["competencia_atual"];
 
@@ -825,6 +827,7 @@
             putCompany(balancete_mensal, "balancete_mensal");
             putCompany(balancete_lancado, "balancete_lancado");
             putCompany(data_all_deliveries_balancetes, "all_deliveries_balancetes");
+            putCompany(data_matriz_apont_horas, "data_matriz_apont_horas");
 
             update_status_btn_filter_id_company_by_name();
             
@@ -1203,32 +1206,31 @@
 
     function selectVisualDashboard(element, update_data){
         
-        // container-tabela-info-hist-balancetes
-        // data-btn-option-visual
-
-        
-        
         console.log(` ------------ element ------------ `)
         console.log(element)
 
         var option_active, all_btns, containers;
 
         option_active = element.getAttribute("data-btn-option-visual");
+        console.log(` >>>>>>>>>>>>> option_active: ${option_active}`)
+
         window.localStorage.setItem("data_btn_option_visual", option_active);
 
-        if (option_active != "container-tabela-info-hist-balancetes") {
+        if (option_active != "container-tabela-info-hist-balancetes" && option_active != "container-analise-por-apont-horas") {
 
             document.querySelector(".block-filter-year").classList.add("active");
             document.querySelector(".block-filter-month").classList.add("active");
             document.querySelector(".container-filter-date-range").classList.remove("active");
-
-        } else {
+        }
+        else {
 
             document.querySelector(".block-filter-year").classList.remove("active");
             document.querySelector(".block-filter-month").classList.remove("active");
             document.querySelector(".container-filter-date-range").classList.add("active");
             
         }
+
+        // ----------------------------------------------------------------------------------------------
 
         if (option_active == "container-tabela-info-hist-balancetes") {
 
@@ -1248,11 +1250,14 @@
         all_btns.forEach((btn)=>{
 
             if( btn.getAttribute("data-btn-option-visual") == option_active){
+
                 btn.classList.add("active");
                 window.localStorage.setItem("data_btn_option_visual", option_active);
-
+                
             } else {
+
                 btn.classList.remove("active");
+
             }
         });
         // ----
@@ -1277,7 +1282,7 @@
         option_active = await window.localStorage.getItem("data_btn_option_visual");
         try {await document.querySelector(`[data-btn-option-visual="${option_active}"]`).classList.add("active");} catch (error) {};
         // ----
-        if (option_active === "container-tabela-info-hist-balancetes") {
+        if (option_active === "container-tabela-info-hist-balancetes" || option_active === "container-analise-por-apont-horas") {
             document.querySelector(".container-cards-resume").classList.remove("active");
             document.querySelector(".container-cards-resume-02").classList.add("active");
             // ----

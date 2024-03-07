@@ -177,11 +177,13 @@
     align-items: center;
     gap: 12px;
     padding: 0 16px 0 12px;
-
 }
 
 /* ------------------------ AJUSTE DA SIDEBAR ------------------------ */
 @media (width < 920px) {
+    .block-btn-mode-sidebar {
+        display: none;
+    }
     .sidebar {
         width: 72px;
     }
